@@ -1,4 +1,4 @@
 <template>
-	<div>asdsadsad</div>
+	<div>Este es el index</div>
 	
 </template>
