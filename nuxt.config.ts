@@ -19,5 +19,10 @@ export default defineNuxtConfig({
 
 	future: {
 		compatibilityVersion: 4
+	},
+	routeRules: {
+		'/api/**': {
+			proxy: { to: "http://localhost:3000/**", },
+		}
 	}
 })
