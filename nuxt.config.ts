@@ -9,5 +9,7 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss'],
   plugins: ["~/plugins/preline.client.ts"],
-
+  future: {
+    compatibilityVersion: 4
+  }
 })
