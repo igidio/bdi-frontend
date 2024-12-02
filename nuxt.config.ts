@@ -7,5 +7,7 @@ export default defineNuxtConfig({
     port: 5173
   },
 
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss'],
+  plugins: ["~/plugins/preline.client.ts"],
+
 })

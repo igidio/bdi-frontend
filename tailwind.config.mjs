@@ -1,12 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx,vue}",
+    './node_modules/preline/preline.js',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('preline/plugin'),
+  ],
 }
 
