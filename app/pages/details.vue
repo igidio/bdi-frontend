@@ -1,19 +1,18 @@
 <template>
-	
-	<select
-		class=" "
-	>
-		<option>Select option</option>
-		<option v-for="head in heads" :key="head.id">{{ head.name }}</option>
+	<select v-model="current_head">
+		<option selected disabled :value="undefined">Selecciona un sector</option>
+		<option v-for="head in heads" :key="head.id" :value="head">{{ head.name }}</option>
 	</select>
 	
-	{{ data }}
+	{{ current_head }}
 </template>
 
 <script setup lang="ts">
-import type {HeadInterface} from "~/interfaces";
+import {useHeadComposable} from "~/composables/head.composable";
 
-const { data, error, refresh, clear } = await useAsyncData('sector', () => $fetch('http://localhost:3000/head'))
+const {data, error, refresh, clear} = await useAsyncData('sector', () => $fetch('http://localhost:3000/head'))
 
-const heads: Ref<HeadInterface[]> = ref(data as any)
+const {heads, current_head} = useHeadComposable()
+
+heads.value = data.value as any
 </script>
