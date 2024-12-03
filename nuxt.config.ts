@@ -9,13 +9,17 @@ export default defineNuxtConfig({
 
 	modules: ['@nuxtjs/tailwindcss'],
 	plugins: ["~/plugins/preline.client.ts"],
-	// components: [
-	// 	{
-	// 		prefix: 'App',
-	// 		path: '~/components/App',
-	// 		pathPrefix: true,
-	// 	},
-	// ],
+	components: [
+		{
+			prefix: 'App',
+			path: '~/components/App',
+			pathPrefix: true,
+		},{
+			prefix: 'Detail',
+			path: '~/components/Detail',
+			pathPrefix: true,
+		},
+	],
 
 	future: {
 		compatibilityVersion: 4
