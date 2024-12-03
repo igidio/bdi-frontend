@@ -8,7 +8,10 @@
 			<DetailGrid v-if="current_head"></DetailGrid>
 		</AppCard>
 		
-		<DetailSector/>
+		<div class="w-[20%]">
+		<DetailMap/>
+<!--		<DetailSector/>-->
+		</div>
 	</div>
 </template>
 
