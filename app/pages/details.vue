@@ -1,12 +1,15 @@
 <template>
-	<AppCard title="Sectores">
-		<select v-model="current_head" @change="get_details()">
-			<option selected disabled :value="undefined">Selecciona un sector</option>
-			<option v-for="head in heads" :key="head.id" :value="head">{{ head.name }}</option>
-		</select>
-		<DetailGrid v-if="current_head"></DetailGrid>
-	</AppCard>
-
+	<div class="flex flex-row gap-4">
+		<AppCard title="Sectores" class="w-[80%]">
+			<select v-model="current_head" @change="get_details()">
+				<option selected disabled :value="undefined">Selecciona un sector</option>
+				<option v-for="head in heads" :key="head.id" :value="head">{{ head.name }}</option>
+			</select>
+			<DetailGrid v-if="current_head"></DetailGrid>
+		</AppCard>
+		
+		<DetailSector/>
+	</div>
 </template>
 
 <script setup lang="ts">

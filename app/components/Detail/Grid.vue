@@ -1,5 +1,4 @@
 <template>
-	{{ matrix.length }}
 	<div class="flex flex-row">
 		<div class="flex flex-col gap-0.5 mt-[1px] mx-0.5">
 			<div class="h-10 w-10"/>
