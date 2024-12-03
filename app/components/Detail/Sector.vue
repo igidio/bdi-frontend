@@ -1,5 +1,6 @@
 <template>
-	<AppCard title="Inf. del sector" class="w-[20%] h-fit" v-if="current_details">
+	<AppCard :title="`Sector ${current_head?.sector}`" class="h-fit" v-if="current_details">
+		<span>{{current_head?.name}}</span>
 		<ul>
 			<li><b>Total espacios:</b> {{ current_details.length }}</li>
 			<!--	<li><b>Capilla:</b></li>-->
@@ -24,18 +25,18 @@
 <script setup lang="ts">
 import {DetailStatusEnum, DetailTypeEnum} from "~/enums";
 
-const { current_details } = useSectorComposable()
+const { current_details, current_head } = useSectorComposable()
 
 const selector = computed(() => ({
-	camino: current_details.value.filter((detail: any) => detail.type === DetailTypeEnum.camino ).length,
-	centro: current_details.value.filter((detail: any) => detail.type === DetailTypeEnum.centro ).length,
-	borde: current_details.value.filter((detail: any) => detail.type === DetailTypeEnum.borde ).length,
+	camino: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.camino ).length,
+	centro: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.centro ).length,
+	borde: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.borde ).length,
 }));
 
 const availability = computed(() => ({
-	disponible: current_details.value.filter((detail: any) => detail.status === DetailStatusEnum.disponible ).length,
-	no_disponible: current_details.value.filter((detail: any) => detail.status === DetailStatusEnum.no_disponible ).length,
-	reservado: current_details.value.filter((detail: any) => detail.status === DetailStatusEnum.reservado ).length,
-	vendido: current_details.value.filter((detail: any) => detail.status === DetailStatusEnum.vendido ).length
+	disponible: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.disponible ).length,
+	no_disponible: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.no_disponible ).length,
+	reservado: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.reservado ).length,
+	vendido: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.vendido ).length
 }));
 </script>
