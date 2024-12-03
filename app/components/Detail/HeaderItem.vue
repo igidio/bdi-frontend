@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 interface Props {
-	value: string|number,
+	value: string|number|undefined,
 }
 
 defineProps<Props>()
