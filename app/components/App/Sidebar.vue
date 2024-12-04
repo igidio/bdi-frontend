@@ -4,44 +4,45 @@
 		<hr/>
 		
 		<div class="flex flex-col gap-2">
-			<button v-for="e in elements" class="menu-item">
+			<NuxtLink v-for="(e, index) in options" :key="index" class="menu-item" :to="{name: e.to}">
 				<Icon :name="e.icon" class="bg-blue-500" size="16"/>
 				{{ e.name }}
-			</button>
+			
+			</NuxtLink>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-const elements = [
+const options = [
 	{
 		name: "Inicio",
-		icon: "tabler:home-filled",
-		to: "",
+		icon: "tabler:home",
+		to: "index",
 	},
 	{
 		name: "Sectores",
-		icon: "tabler:layout-grid-filled",
-		to: ""
+		icon: "tabler:layout-grid",
+		to: "details"
 	},
 	{
 		name: "Opción 1",
-		icon: "tabler:circle-number-1-filled",
+		icon: "tabler:circle-number-1",
 		to: ""
 	},
 	{
 		name: "Opción 2",
-		icon: "tabler:circle-number-2-filled",
+		icon: "tabler:circle-number-2",
 		to: ""
 	},
 	{
 		name: "Opción 3",
-		icon: "tabler:circle-number-3-filled",
+		icon: "tabler:circle-number-3",
 		to: ""
 	},
 	{
 		name: "Opción 4",
-		icon: "tabler:circle-number-3-filled",
+		icon: "tabler:circle-number-4",
 		to: ""
 	},
 ]

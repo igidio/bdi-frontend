@@ -1,13 +1,13 @@
 <template>
 	<div class="card">
-		<span class="title">{{ title }}</span>
+		<span class="title" v-if="title">{{ title }}</span>
 			<slot/>
 	</div>
 </template>
 
 <script setup lang="ts">
 interface props {
-	title: string
+	title?: string
 }
 defineProps<props>()
 </script>
