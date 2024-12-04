@@ -4,3 +4,9 @@
 		Solid
 	</button>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+	title: 'Inicio'
+})
+</script>

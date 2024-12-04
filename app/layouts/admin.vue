@@ -4,8 +4,8 @@
 			<AppSidebar/>
 		</div>
 		<div class="w-1 flex-1 p-4">
-		<slot/>
-		
+			<AppHeader/>
+			<slot/>
 		</div>
 	</div>
 </template>

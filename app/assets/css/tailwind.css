@@ -15,7 +15,7 @@ html, #__nuxt {
 }
 
 /* BUTTONS */
-button {
+.button {
 	@apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent;
 }
 
@@ -36,7 +36,9 @@ select {
 select.primary {
 	@apply focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600;
 }
-
+select.gray {
+	@apply bg-gray-100 border-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600;
+}
 /* CARD */
 .card {
 	@apply flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 p-4 gap-4;
@@ -44,4 +46,8 @@ select.primary {
 
 .card .title {
 @apply text-xl font-bold text-gray-800 dark:text-white
+}
+
+.menu-item {
+	@apply hover:bg-blue-100 active:bg-blue-200 w-full transition-colors py-2 px-2 items-center text-sm inline-flex gap-2 rounded-md;
 }

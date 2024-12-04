@@ -14,9 +14,20 @@ export default defineNuxtConfig({
 			prefix: 'App',
 			path: '~/components/App',
 			pathPrefix: true,
-		}, {
+		},
+		{
 			prefix: 'Detail',
 			path: '~/components/Detail',
+			pathPrefix: true,
+		},
+		{
+			prefix: 'Notifications',
+			path: '~/components/Notifications',
+			pathPrefix: true,
+		},
+		{
+			prefix: 'User',
+			path: '~/components/User',
 			pathPrefix: true,
 		},
 	],
