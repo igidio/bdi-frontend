@@ -7,14 +7,14 @@ export default defineNuxtConfig({
 		port: 5173
 	},
 
-	modules: ['@nuxtjs/tailwindcss'],
+	modules: ['@nuxtjs/tailwindcss', '@nuxt/icon'],
 	plugins: ["~/plugins/preline.client.ts"],
 	components: [
 		{
 			prefix: 'App',
 			path: '~/components/App',
 			pathPrefix: true,
-		},{
+		}, {
 			prefix: 'Detail',
 			path: '~/components/Detail',
 			pathPrefix: true,
@@ -26,7 +26,14 @@ export default defineNuxtConfig({
 	},
 	routeRules: {
 		'/api/**': {
-			proxy: { to: "http://localhost:3000/**", },
+			proxy: {to: "http://localhost:3000/**",},
+		}
+	},
+	icon: {
+		localApiEndpoint: '/iconify',
+		provider: 'server',
+		serverBundle: {
+			collections: ['tabler']
 		}
 	}
 })

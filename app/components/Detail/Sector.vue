@@ -1,23 +1,27 @@
 <template>
 	<AppCard :title="`Sector ${current_head?.sector}`" class="h-fit" v-if="current_details">
-		<span>{{current_head?.name}}</span>
-		<ul>
-			<li><b>Total espacios:</b> {{ current_details.length }}</li>
-			<!--	<li><b>Capilla:</b></li>-->
-			<li> <b>Centro:</b> {{ selector.centro }}</li>
-			<li><b>Borde:</b> {{ selector.borde }}</li>
-			<li><b>Camino:</b> {{ selector.camino }}</li>
-		</ul>
+		<span>{{ current_head?.name }}</span>
+		
+		<span class="text-base font-bold">Disposición de espacios</span>
+		
+		<table>
+			<tr v-for="e in disposition">
+				<td class="flex items-center"><Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>{{ e.name }}</td>
+				<td>{{ e.value }}</td>
+			</tr>
+		</table>
+		
+		
 		
 		<span class="text-base font-bold">Disponibilidad</span>
-		<ul>
-			<li><b>Vendidos:</b> {{ availability.vendido }}</li>
-			<li><b>Disponibles:</b> {{ availability.disponible }}</li>
-			<!--	TODO -->
-			<li><b>Ocupados:</b> 1</li>
-			<li><b>Reservado:</b> {{ availability.reservado }}</li>
-			<li><b>No disponible:</b> {{ availability.no_disponible }}</li>
-		</ul>
+		
+		<table>
+			<tr v-for="e in availability">
+				<td class="flex items-center"><Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>{{ e.name }}</td>
+				<td>{{ e.value }}</td>
+			</tr>
+		</table>
+		
 	</AppCard>
 
 </template>
@@ -25,18 +29,53 @@
 <script setup lang="ts">
 import {DetailStatusEnum, DetailTypeEnum} from "~/enums";
 
-const { current_details, current_head } = useSectorComposable()
+const {current_details, current_head} = useSectorComposable()
 
-const selector = computed(() => ({
-	camino: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.camino ).length,
-	centro: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.centro ).length,
-	borde: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.borde ).length,
-}));
+// TODO	Capilla
+const disposition = computed(() => [
+	{
+		name: 'Camino',
+		value: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.camino).length,
+		color: 'bg-emerald-400'
+	},
+	{
+		name: 'Centro',
+		value: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.centro).length,
+		color: 'bg-yellow-400'
+	},
+	{
+		name: 'Borde',
+		value: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.borde).length,
+		color: 'bg-orange-400'
+	},
+	{
+		name: 'Total',
+		value: current_details.value?.length,
+		color: 'bg-white'
+	},
+]);
 
-const availability = computed(() => ({
-	disponible: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.disponible ).length,
-	no_disponible: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.no_disponible ).length,
-	reservado: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.reservado ).length,
-	vendido: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.vendido ).length
-}));
+// TODO: Ocupados
+const availability = computed(() => [
+	{
+		name: 'Disponibles',
+		value: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.disponible).length,
+		color: 'bg-white'
+	},
+	{
+		name: 'Vendidos',
+		value: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.vendido).length,
+		color: 'bg-emerald-100'
+	},
+	{
+		name: 'Reservado',
+		value: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.reservado).length,
+		color: 'bg-yellow-100'
+	},
+	{
+		name: 'No disponible',
+		value: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.no_disponible).length,
+		color: 'bg-fuchsia-200'
+	}
+]);
 </script>
