@@ -1,6 +1,6 @@
 <template>
 	<div class="main">
-			<NuxtLayout :name="layout">
+			<NuxtLayout >
 				<NuxtPage/>
 			</NuxtLayout>
 		
@@ -8,5 +8,4 @@
 </template>
 
 <script setup lang="ts">
-const layout = "admin";
 </script>

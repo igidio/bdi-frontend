@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-	title: 'Inicio'
+	title: 'Inicio',
+	layout: "admin",
 })
 </script>

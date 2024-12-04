@@ -25,6 +25,7 @@ const {heads, current_head, get_details} = useSectorComposable()
 heads.value = data.value as any
 
 definePageMeta({
-	title: 'Sectores'
+	title: 'Sectores',
+	layout: "admin",
 })
 </script>

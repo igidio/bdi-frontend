@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-	title: 'Opciones de usuario'
+	title: 'Opciones de usuario',
+	layout: "admin",
 })
 </script>
