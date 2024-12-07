@@ -15,7 +15,7 @@
 				<button
 					v-for="e in options"
 					class="menu-item"
-					@click="router.push({ name: e.to})"
+					@click="e.to"
 				>
 					<Icon :name="e.icon" :class="e.color" size="16"/>
 					{{ e.name }}
@@ -30,13 +30,16 @@ const options = [
 	{
 		name: "Opciones de usuario",
 		icon: "tabler:user",
-		to: "user",
+		to: () => navigateTo('user'),
 		color: "bg-blue-500"
 	},
 	{
 		name: "Cerrar sesión",
 		icon: "tabler:logout",
-		to: "",
+		to: () => {
+			useUserStore().logout_user()
+			return navigateTo('login')
+		},
 		color: "bg-red-500"
 	}
 ]

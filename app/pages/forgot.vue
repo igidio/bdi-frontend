@@ -12,7 +12,7 @@
 		
 		<div class="justify-between inline-flex">
 			<NuxtLink to="login" class="button ghost h-full align-middle">Volver a Inicio de sesión</NuxtLink>
-		
+			
 			<button class="button primary">Enviar</button>
 		</div>
 	</AppCard>
@@ -21,5 +21,6 @@
 <script setup lang="ts">
 definePageMeta({
 	layout: "auth",
+	middleware: "unauthenticated"
 });
 </script>

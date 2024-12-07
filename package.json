@@ -21,7 +21,8 @@
     "pinia": "^2.2.8",
     "preline": "^2.5.1",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
