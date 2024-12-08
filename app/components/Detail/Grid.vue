@@ -20,10 +20,11 @@
 					<td v-for="(col) in row" :key="col?.id" v-if="row.length > 0">
 						<DetailElementItem
 							:data="{
-										type: col?.type,
-										value: col?.value,
-										status: col?.status
-									}"
+								type: col?.type,
+								value: col?.value,
+								status: col?.status
+							}"
+							@click="get_detail(col.id)"
 						/>
 					</td>
 				</tr>
@@ -38,6 +39,7 @@
 import type {DetailInterface} from "~/interfaces";
 import create_matrix from "~/helpers/create_matrix";
 import unique_data_from_array from "~/helpers/unique_data_from_array";
+const { set_selected_detail, selected_detail } = useSectorComposable()
 
 const {current_details} = useSectorComposable()
 const matrix: ComputedRef<DetailInterface[][]> = computed(() => {
@@ -46,4 +48,11 @@ const matrix: ComputedRef<DetailInterface[][]> = computed(() => {
 });
 
 const rows = computed(() => unique_data_from_array(current_details.value as any, 'row'))
+
+const get_detail = async (id: number) => {
+	await $fetch<DetailInterface>(`/api/detail/${id}`).then((data) => {
+		set_selected_detail(data)
+	})
+	console.log(selected_detail.value)
+}
 </script>

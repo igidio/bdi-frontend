@@ -1,15 +1,11 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
+import type {UserInterface} from "~/interfaces";
 
 export const useUserStore = defineStore('user', () => {
 	const router = useRouter()
 	//Similar a estados
-	interface UserInterface {
-		id: number,
-		username: string,
-		email: string,
-		token: string,
-	}
+
 	const user:Ref<UserInterface|undefined> = ref(undefined)
 
 	const set_token = (

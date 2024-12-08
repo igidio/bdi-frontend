@@ -4,6 +4,8 @@ import unique_data_from_array from "~/helpers/unique_data_from_array";
 const current_head: Ref<HeadInterface | undefined> = ref(undefined)
 
 const current_details: Ref<DetailInterface[] | undefined> = ref(undefined)
+
+const selected_detail: Ref<DetailInterface|undefined> = ref(undefined)
 const heads: Ref<HeadInterface[]> = ref([])
 
 export function useSectorComposable() {
@@ -19,5 +21,18 @@ export function useSectorComposable() {
 		current_details.value = data as any
 	}
 
-	return {heads, current_head, set_head, current_details, get_details};
+	const set_selected_detail = async (detail:DetailInterface) => {
+		selected_detail.value = detail
+	}
+
+	const delete_selected_detail = async () => {
+		selected_detail.value = undefined
+	}
+
+	return {heads, current_head, set_head, current_details,
+		get_details,
+		set_selected_detail,
+		delete_selected_detail,
+		selected_detail
+	};
 }

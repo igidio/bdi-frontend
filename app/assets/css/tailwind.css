@@ -20,12 +20,17 @@ html, #__nuxt {
 
 /* BUTTONS */
 .button {
-	@apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent;
+	@apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg transition-colors;
 }
 
 .primary {
-	@apply bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700;
+	@apply border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700;
 }
+
+.secondary {
+	@apply border border-transparent bg-slate-200 text-black hover:bg-slate-300 focus:outline-none focus:bg-slate-300 active:bg-slate-400;
+}
+
 
 .ghost {
 	@apply bg-transparent text-blue-600 hover:bg-blue-100 focus:outline-none focus:bg-blue-100;
@@ -86,4 +91,54 @@ select.gray {
 /* CHECKBOX */
 .checkbox {
 	@apply shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800;
+}
+
+/* BADGES */
+
+.badge {
+	@apply inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium;
+}
+.badge.dark {
+	@apply bg-gray-800 text-white dark:bg-white dark:text-neutral-800;
+}
+.badge.gray {
+	@apply bg-gray-500 text-white;
+}
+.badge.success {
+	@apply bg-teal-500 text-white;
+}
+.badge.primary {
+	@apply bg-blue-600 text-white dark:bg-blue-500;
+}
+.badge.danger {
+	@apply bg-red-500 text-white;
+}
+.badge.warning {
+	@apply bg-yellow-500 text-white;
+}
+.badge.light {
+	@apply bg-white text-gray-600;
+}
+
+
+.badge.dark.soft {
+	@apply bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white;
+}
+.badge.gray.soft {
+	@apply  bg-gray-50 text-gray-500 dark:bg-white/10 dark:text-white;
+}
+.badge.success.soft {
+	@apply bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500;
+}
+.badge.primary.soft {
+	@apply bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500;
+}
+.badge.danger.soft {
+	@apply bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-500;
+}
+.badge.primary.soft {
+	@apply bg-yellow-100 text-yellow-800 dark:bg-yellow-800/30 dark:text-yellow-500;
+}
+.badge.primary.soft {
+	@apply bg-white/10 text-white;
 }

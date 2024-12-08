@@ -1,5 +1,5 @@
 <template>
-	<AppCard :title="`Sector ${current_head?.sector}`" class="h-fit" v-if="current_details">
+	<AppCard :title="`Sector ${current_head?.sector}`" class="h-fit">
 		<span>{{ current_head?.name }}</span>
 		
 		<span class="text-base font-bold">Disposición de espacios</span>

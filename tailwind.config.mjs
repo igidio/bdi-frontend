@@ -9,6 +9,7 @@ export default {
   theme: {
     extend: {},
     fontSize: {
+      xs: "0.425rem", //
       sm: "0.625rem", // 10px
       //base: "0.875rem", // 14px
       base: "0.75rem", // 14px
