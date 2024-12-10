@@ -1,13 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx,vue}",
     './node_modules/preline/preline.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'width': 'width',
+      },
+      colors: {
+        dark: {
+          50: '#e6f0f3',
+          100: '#cce1e7',
+          200: '#99c3cf',
+          300: '#66a5b7',
+          400: '#33879f',
+          500: '#006987',
+          600: '#00556b',
+          700: '#00414f',
+          800: '#002d33',
+          900: '#001917',
+          950: '#000c0c',
+        }
+      }
+    },
     fontSize: {
       xs: "0.425rem", //
       sm: "0.625rem", // 10px

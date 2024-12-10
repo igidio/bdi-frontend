@@ -1,12 +1,22 @@
 <template>
-	<div class="bg-white h-screen p-4 flex flex-col gap-2">
-		<AppLogo></AppLogo>
+	<div class="sidebar" :class="(is_expanded) ? 'w-48' : 'w-12'">
+		<button class="mb-4" @click="is_expanded = !is_expanded">
+			<Icon name="tabler:menu-3" size="20"/>
+		</button>
+		
+		<AppLogo class="w-full place-self-center"></AppLogo>
 		<hr/>
 		
 		<div class="flex flex-col gap-2">
-			<NuxtLink v-for="(e, index) in options" :key="index" class="menu-item" :to="{name: e.to}">
-				<Icon :name="e.icon" class="bg-blue-500" size="16"/>
-				{{ e.name }}
+			<NuxtLink
+				v-for="(e, index) in options"
+				:key="index"
+				:class="(is_expanded) ? 'menu-item' : 'py-1'"
+				class="menu-item"
+				:to="{name: e.to}"
+			>
+				<Icon :name="e.icon" class="icon" size="16"/>
+				<span :class="(!is_expanded) && 'hidden'">{{ e.name }}</span>
 			
 			</NuxtLink>
 		</div>
@@ -46,4 +56,6 @@ const options = [
 		to: ""
 	},
 ]
+
+const is_expanded = ref(true)
 </script>
