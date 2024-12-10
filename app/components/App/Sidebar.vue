@@ -1,5 +1,5 @@
 <template>
-	<div class="sidebar" :class="(is_expanded) ? 'w-48' : 'w-12'">
+	<div class="sidebar" :class="(is_expanded) ? 'w-48' : 'w-16'">
 		<button class="mb-4" @click="is_expanded = !is_expanded">
 			<Icon name="tabler:menu-3" size="20"/>
 		</button>
