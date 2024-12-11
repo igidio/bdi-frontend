@@ -1,7 +1,8 @@
 <template>
 	<div class="flex flex-row">
 		<div class="w-fit">
-			<AppSidebar/>
+			<AppSidebarMobile/>
+			<AppSidebarDesktop/>
 		</div>
 		<div class="w-1 flex-1 p-4">
 			<AppHeader/>
