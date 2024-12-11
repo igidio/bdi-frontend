@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* GENERAL */
+$background: 'bg-primary-50 dark:bg-shark-950';
+/* BUTTONS */
+$primary-default: 'bg-primary-500';
+$primary-hover: 'hover:bg-primary-600';
+$primary-active: 'active:bg-primary-700';
+/* FORMS */
+$input-default: 'bg-transparent';
+$input-gray-default: 'bg-gray-100 dark:bg-gray-900';
+
 @layer base {
 	:root {
 		--primary-default: theme(colors.primary.500);
@@ -13,7 +23,7 @@
 
 /* GENERIC */
 body {
-	@apply text-base font-normal font-['Poppins'] bg-primary-50 dark:bg-shark-950 dark:text-white;
+	@apply text-base font-normal font-['Poppins'] #{$background} dark:bg-shark-950 dark:text-white;
 }
 
 .main {
@@ -25,7 +35,7 @@ html, #__nuxt {
 }
 /* COLORS */
 .primary {
-	@apply border border-transparent bg-[primary-default] text-white hover:bg-[var(--primary-hover)] focus:outline-none active:bg-[var(primary-active)];
+	@apply border border-transparent text-white  #{$primary-default} #{$primary-hover} #{$primary-active};
 }
 
 .secondary {
@@ -41,9 +51,6 @@ html, #__nuxt {
 	@apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg transition-colors;
 }
 
-
-
-
 .ghost {
 	@apply bg-transparent text-primary-600 hover:bg-primary-100 focus:outline-none focus:bg-primary-100;
 }
@@ -58,23 +65,22 @@ button:disabled {
 
 /* FORMS */
 .input {
-	@apply py-3 px-4 block w-full border-gray-200 rounded-lg text-sm;
+	@apply py-3 px-4 block w-full border-gray-200 rounded-lg text-sm dark:bg-shark-400;
+	.gray {
+		@apply #{$input-gray-default} border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600;
+	}
 }
 
-.input.gray {
-	@apply bg-gray-100 border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600;
-}
-
-select {
+.select {
 	@apply py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm;
+
+}
+.select.gray {
+	@apply border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600 border-shark-200 dark:border-shark-500 #{$input-gray-default};
 }
 
-select.primary {
+.select.primary {
 	@apply focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600;
-}
-
-select.gray {
-	@apply bg-gray-100 border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600;
 }
 
 /* SIDEBAR */
@@ -122,7 +128,7 @@ select.gray {
 
 /* HEADER */
 .header {
-	@apply bg-primary-50 dark:bg-shark-950 py-4 w-full border-b-[1px] z-10;
+	@apply #{$background} py-4 w-full border-b-[1px] z-10;
 }
 
 /* BADGES */

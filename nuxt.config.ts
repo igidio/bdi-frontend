@@ -15,7 +15,6 @@ export default defineNuxtConfig({
 	],
 	colorMode: {
 		classSuffix: '',
-
 	},
 	plugins: ["~/plugins/preline.client.ts"],
 	components: [
@@ -54,6 +53,16 @@ export default defineNuxtConfig({
 		provider: 'server',
 		serverBundle: {
 			collections: ['tabler']
+		}
+	},
+	css: ["~/assets/css/tailwind.scss"],
+	vite: {
+		css: {
+			preprocessorOptions: {
+				scss: {
+					api: 'modern-compiler'
+				}
+			}
 		}
 	}
 })

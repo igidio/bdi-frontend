@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-row gap-4">
 		<AppCard class="w-[80%]">
-			<select v-model="current_head" @change="get_details()" class="gray">
+			<select v-model="current_head" @change="get_details()" class="select gray">
 				<option selected disabled :value="undefined">Selecciona un sector</option>
 				<option v-for="head in heads" :key="head.id" :value="head">Sector {{ head.sector }}: {{ head.name }}</option>
 			</select>

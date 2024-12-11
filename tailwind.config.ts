@@ -1,6 +1,11 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
 
-export default {
+import * as preline from 'preline/plugin'
+import * as tailwind_forms from '@tailwindcss/forms'
+
+
+export default <Partial<Config>>{
+
   darkMode: 'class',
   content: [
     "./index.html",
@@ -59,9 +64,9 @@ export default {
     },
   },
   plugins: [
-    require('preline/plugin'),
-    require('@tailwindcss/forms'),
-  ],
+    preline.default,
+    tailwind_forms.default
+  ]
 
 }
 
