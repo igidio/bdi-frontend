@@ -1,7 +1,7 @@
 <template>
-	<div class="tablet:hidden">
-
-		<div class="sidebar sidebar-mobile h-screen z-30 fixed transition-width shadow-md" :class="is_expanded === true ? 'w-44' : 'min' ">
+	<div class="sidebar-mobile">
+		
+		<div class="sidebar h-screen z-30 fixed transition-width shadow-md" :class="is_expanded === true ? 'w-44' : 'min' ">
 			
 			<button class="menu-item" @click="is_expanded = !is_expanded">
 				<Icon name="tabler:menu-3" class="icon" size="16" />

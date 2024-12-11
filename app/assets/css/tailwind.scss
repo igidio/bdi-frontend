@@ -33,7 +33,7 @@ body {
 }
 
 html, #__nuxt {
-	@apply h-full;
+	@apply h-full scroll-smooth;
 }
 /* COLORS */
 .primary {
@@ -89,10 +89,10 @@ button:disabled {
 .sidebar {
 	@apply #{$surface} h-screen p-4 flex-col gap-2 transition-width gap-2;
 	&-desktop {
-		@apply hidden tablet:flex sticky top-0;
+		@apply hidden desktop:flex sticky top-0;
 	}
 	&-mobile {
-		@apply flex tablet:hidden;
+		@apply flex desktop:hidden;
 	}
 }
 .sidebar.min {

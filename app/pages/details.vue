@@ -1,17 +1,24 @@
 <template>
-	<div class="flex flex-row gap-4">
-		<AppCard class="w-[80%]">
+	<div class="flex flex-col tablet:flex-row gap-4">
+		<DetailMap class="block tablet:hidden"/>
+		<AppCard class="w-full">
 			<select v-model="current_head" @change="get_details()" class="select gray">
 				<option selected disabled :value="undefined">Selecciona un sector</option>
 				<option v-for="head in heads" :key="head.id" :value="head">Sector {{ head.sector }}: {{ head.name }}</option>
 			</select>
+			<DetailSector v-if="current_details" :is_card="false" class="block tablet:hidden"/>
 			<DetailGrid v-if="current_head"></DetailGrid>
 		</AppCard>
 		
-		<div class="w-[20%] gap-4 flex flex-col">
-			<DetailMap/>
+		<div class="w-full tablet:w-48 gap-4 flex flex-col sticky top-20 h-full" id="info">
+			<div class="hidden tablet:block">
+				<DetailMap/>
+			</div>
+			
 			<DetailInfo v-if="selected_detail && current_details"/>
-			<DetailSector v-else-if="current_details"/>
+			<div class="hidden tablet:block" v-else-if="current_details">
+				<DetailSector class="hidden tablet:block"/>
+			</div>
 		</div>
 	</div>
 </template>

@@ -25,6 +25,7 @@
 								status: col?.status
 							}"
 							@click="get_detail(col.id)"
+							
 						/>
 					</td>
 				</tr>
@@ -53,6 +54,7 @@ const get_detail = async (id: number) => {
 	await $fetch<DetailInterface>(`/api/detail/${id}`).then((data) => {
 		set_selected_detail(data)
 	})
+	useRouter().push({ hash: '#info' })
 	console.log(selected_detail.value)
 }
 </script>

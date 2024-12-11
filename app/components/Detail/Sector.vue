@@ -1,33 +1,45 @@
 <template>
-	<AppCard :title="`Sector ${current_head?.sector}`" class="h-fit">
-		<span>{{ current_head?.name }}</span>
-		
-		<span class="text-base font-bold">Disposición de espacios</span>
+	<component :is="is_card ? Card : 'div'" :title="`Sector ${current_head?.sector}`" class="h-fit">
+		<span v-if="is_card">{{ current_head?.name }}</span>
+		<span class="text-sm font-bold">Disposición de espacios</span>
 		
 		<table>
-			<tr v-for="e in disposition">
-				<td class="flex items-center"><Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>{{ e.name }}</td>
+			<tr v-for="e in disposition" class="text-sm">
+				<td class="flex items-center">
+					<Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>
+					{{ e.name }}
+				</td>
 				<td>{{ e.value }}</td>
 			</tr>
 		</table>
 		
 		
-		
-		<span class="text-base font-bold">Disponibilidad</span>
+		<span class="font-bold text-sm">Disponibilidad</span>
 		
 		<table>
-			<tr v-for="e in availability">
-				<td class="flex items-center"><Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>{{ e.name }}</td>
+			<tr v-for="e in availability" class="text-sm">
+				<td class="flex items-center">
+					<Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>
+					{{ e.name }}
+				</td>
 				<td>{{ e.value }}</td>
 			</tr>
 		</table>
-		
-	</AppCard>
+	
+	</component>
 
 </template>
 
 <script setup lang="ts">
+interface Props {
+	is_card?: boolean
+}
+withDefaults(defineProps<Props>(), {
+	is_card: true
+})
+
 import {DetailStatusEnum, DetailTypeEnum} from "~/enums";
+import Card from "~/components/App/Card.vue";
 
 const {current_details, current_head} = useSectorComposable()
 

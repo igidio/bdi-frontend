@@ -60,7 +60,7 @@ export default <Partial<Config>>{
     },
     screens: {
       tablet: "575px",
-      desktop: "720px",
+      desktop: "768px",
     },
   },
   plugins: [

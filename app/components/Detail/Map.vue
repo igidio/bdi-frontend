@@ -1,5 +1,7 @@
 <template>
-	<AppCard title="Mapa">
+	<component :is="is_card ? Card : 'div'" title="Mapa">
+		
+		
 		<div class="w-full">
 			<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.54 343.76">
 				<polygon
@@ -77,21 +79,29 @@
 				<span class="font-semibold">Sector {{ sector_name.sector }}</span>
 				<span>{{ sector_name.name }}</span>
 			</div>
-			
+		
 		</div>
-	</AppCard>
+	</component>
 </template>
 
 <script setup lang="ts">
+interface Props {
+	is_card?: boolean
+}
+withDefaults(defineProps<Props>(), {
+	is_card: true
+})
+
+import Card from "~/components/App/Card.vue";
+
 const {heads, current_head, get_details} = useSectorComposable()
-const sector_name:Ref<{ name: string, sector: string }> = ref({} as {name: string, sector: string})
+const sector_name: Ref<{ name: string, sector: string }> = ref({} as { name: string, sector: string })
 
 const hovered = ref(false)
 
 const on_hover = (sector: number) => {
 	hovered.value = true
-	//sector_name.value = `Sector ${heads.value[sector - 1].sector}: ${heads.value[sector - 1].name}`
-	sector_name.value = { sector: heads.value[sector - 1].sector, name:  heads.value[sector - 1].name}
+	sector_name.value = {sector: heads.value[sector - 1]!.sector, name: heads.value[sector - 1]!.name}
 }
 const on_click = (sector: number) => {
 	current_head.value = heads.value[sector - 1]
