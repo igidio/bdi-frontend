@@ -75,26 +75,28 @@
 		</div>
 		
 		<div class="h-8">
-			<div v-if="hovered" class="flex flex-col text-center">
-				<span class="font-semibold">Sector {{ sector_name.sector }}</span>
-				<span>{{ sector_name.name }}</span>
+			<div v-if="hovered || current_head" class="flex flex-col text-center">
+				<span class="font-semibold">Sector {{ hovered ? sector_name.sector : current_head?.sector }}</span>
+				<span class="text-sm">{{ hovered ? sector_name.name : current_head?.name }}</span>
 			</div>
 		
 		</div>
+		
+		<DetailSector v-if="current_details && current_details.length > 0" :is_card="false" class="block tablet:hidden text-center"/>
 	</component>
 </template>
 
 <script setup lang="ts">
 interface Props {
-	is_card?: boolean
+	is_card?: boolean,
 }
 withDefaults(defineProps<Props>(), {
-	is_card: true
+	is_card: true,
 })
 
 import Card from "~/components/App/Card.vue";
 
-const {heads, current_head, get_details} = useSectorComposable()
+const {heads, current_head, get_details, current_details} = useSectorComposable()
 const sector_name: Ref<{ name: string, sector: string }> = ref({} as { name: string, sector: string })
 
 const hovered = ref(false)
@@ -108,18 +110,3 @@ const on_click = (sector: number) => {
 	get_details()
 }
 </script>
-
-<style>
-.path {
-	fill: gray;
-}
-
-.sector {
-	@apply fill-blue-300 hover:fill-blue-400 transition-colors;
-}
-
-.sector.selected {
-	@apply fill-blue-600;
-}
-</style>
-

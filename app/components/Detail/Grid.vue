@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-row">
+	<div class="flex flex-row text-black">
 		<div class="flex flex-col gap-0.5 mt-[1px] mx-0.5">
 			<div class="h-10 w-10"/>
 			<div v-for="(_, index_row) in matrix" :key="index_row">
@@ -54,7 +54,7 @@ const get_detail = async (id: number) => {
 	await $fetch<DetailInterface>(`/api/detail/${id}`).then((data) => {
 		set_selected_detail(data)
 	})
-	useRouter().push({ hash: '#info' })
+	await useRouter().push({ hash: '#info' })
 	console.log(selected_detail.value)
 }
 </script>

@@ -19,6 +19,7 @@ export function useSectorComposable() {
 		if (current_head.value === undefined) return
 		const data = await $fetch(`api/detail/sector/${current_head.value?.id}`)
 		current_details.value = data as any
+		selected_detail.value = undefined
 	}
 
 	const set_selected_detail = async (detail:DetailInterface) => {

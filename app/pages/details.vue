@@ -6,7 +6,6 @@
 				<option selected disabled :value="undefined">Selecciona un sector</option>
 				<option v-for="head in heads" :key="head.id" :value="head">Sector {{ head.sector }}: {{ head.name }}</option>
 			</select>
-			<DetailSector v-if="current_details" :is_card="false" class="block tablet:hidden"/>
 			<DetailGrid v-if="current_head"></DetailGrid>
 		</AppCard>
 		
@@ -25,8 +24,6 @@
 
 <script setup lang="ts">
 import {useSectorComposable} from "~/composables/sector.composable";
-
-//const {data} = await useAsyncData('sector', () => $fetch('http://localhost:3000/head'))
 const {data} = await useAsyncData('sector', async () => await $fetch('/api/head'))
 const {
 	heads,

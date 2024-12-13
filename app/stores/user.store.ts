@@ -5,6 +5,7 @@ import type {UserInterface} from "~/interfaces";
 export const useUserStore = defineStore('user', () => {
 	const router = useRouter()
 	//Similar a estados
+	const token: Ref<string> = ref("");
 
 	const user:Ref<UserInterface|undefined> = ref(undefined)
 
@@ -42,7 +43,9 @@ export const useUserStore = defineStore('user', () => {
 		});
 	}
 
-	const token: Ref<string> = ref("");
+	const set_user = (response: UserInterface) => {
+		user.value = response;
+	}
 
 	const logout_user = async () => {
 		delete_token();
@@ -55,6 +58,8 @@ export const useUserStore = defineStore('user', () => {
 		//useToast().add({ title: "Sesión finalizada" });
 	};
 
+	const user_role = computed(() => user.value?.role)
+
 	//regresamos los datos
-	return { user, log_user, logout_user }
+	return { user, log_user, logout_user, set_user, get_token, token, user_role }
 })

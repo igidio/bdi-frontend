@@ -4,7 +4,7 @@
 			<button class="button secondary block" @click="delete_selected_detail()">Cerrar</button>
 		</div>
 		
-		<table v-if="show_sale_info">
+		<table v-if="show_sale_info" class="text-sm">
 			<tbody>
 			<tr>
 				<td>Coordenada</td>
@@ -27,30 +27,73 @@
 			</tr>
 			</tbody>
 		</table>
-		<table v-else>
+		<table v-else class="text-sm">
 			<tbody>
 			<tr>
 				<td>Coordenada</td>
 				<td>{{ selected_detail?.row }}- {{ selected_detail?.column }}</td>
 			</tr>
+			<tr>
+				<td>Sector</td>
+				<td>{{ selected_detail?.head.sector }}</td>
+			</tr>
+			<tr>
+				<td>Disposición</td>
+				<td>{{ selected_detail?.type}}</td>
+			</tr>
+			<tr>
+				<td>Disponibilidad</td>
+				<td>{{ selected_detail?.status }}</td>
+			</tr>
 			</tbody>
 		</table>
+		<button
+			v-if="!show_sale_info"
+			class="button primary block"
+			@click="make_reservation()"
+		>
+			<Icon name="tabler:address-book" size="16"/>
+			Reservar
+		</button>
+		<span v-if="error_message" class="text-sm text-red-600 dark:text-red-200">{{ error_message}}</span>
+		
 	</AppCard>
 </template>
 
 
 <script setup lang="ts">
 import {computed} from "vue";
-import {DetailStatusEnum} from "~/enums";
+import {DetailStatusEnum, UserRoleEnum} from "~/enums";
+import Button from "~/components/User/Button.vue";
+import authFetch from "~/plugins/auth-fetch";
+
+const error_message: Ref<undefined | string> = ref()
+const {$auth_fetch} = useNuxtApp()
 
 const {
 	delete_selected_detail,
 	selected_detail
 } = useSectorComposable()
 
-const { user } = useUserStore()
+const {user, user_role} = useUserStore()
+console.log(user?.role)
 
 const show_sale_info = computed(() => {
-	return user?.role === 'admin' && selected_detail.value?.status === DetailStatusEnum.vendido;
+	return ( [UserRoleEnum.admin, UserRoleEnum.superuser].includes(user?.role as UserRoleEnum) )
 })
+
+const make_reservation = async () => {
+	const a = await $auth_fetch('/api/reservation', {
+		method: 'POST',
+		body: {
+			id_detail: selected_detail.value?.id
+		}
+	}).then((data) => {
+		console.log(data)
+	}).catch((error) => {
+		console.error(error.data)
+		error_message.value = error.data.message
+	})
+	
+}
 </script>

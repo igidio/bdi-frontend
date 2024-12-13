@@ -93,6 +93,10 @@ const get_user = async () => {
 				username: data.username,
 				email: data.email,
 				token: data.token,
+				role: data.role,
+				is_active: data.is_active,
+				created_at: data.created_at,
+				modified_at: data.modified_at
 			})
 		})
 		.catch((e) => {

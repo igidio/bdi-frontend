@@ -1,8 +1,5 @@
 <template>
-	<div>Este es el index</div>
-	<button type="button" class=" ">
-		Solid
-	</button>
+	<div>Esta es la página principal.</div>
 </template>
 
 <script setup lang="ts">
