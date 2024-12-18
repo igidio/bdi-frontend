@@ -5,11 +5,17 @@ const current_head: Ref<HeadInterface | undefined> = ref(undefined)
 
 const current_details: Ref<DetailInterface[] | undefined> = ref(undefined)
 
-const selected_detail: Ref<DetailInterface|undefined> = ref(undefined)
+const selected_detail: Ref<SelectedDetailInterface | undefined> = ref(undefined)
 const heads: Ref<HeadInterface[]> = ref([])
 
-export function useSectorComposable() {
+interface SelectedDetailInterface {
+	detail: DetailInterface;
+	reservation_info?: {
+		is_available: boolean
+	}
+}
 
+export function useSectorComposable() {
 
 	const set_head = (val: HeadInterface) => {
 		current_head.value = val
@@ -22,7 +28,7 @@ export function useSectorComposable() {
 		selected_detail.value = undefined
 	}
 
-	const set_selected_detail = async (detail:DetailInterface) => {
+	const set_selected_detail = async (detail: SelectedDetailInterface) => {
 		selected_detail.value = detail
 	}
 
@@ -30,7 +36,8 @@ export function useSectorComposable() {
 		selected_detail.value = undefined
 	}
 
-	return {heads, current_head, set_head, current_details,
+	return {
+		heads, current_head, set_head, current_details,
 		get_details,
 		set_selected_detail,
 		delete_selected_detail,

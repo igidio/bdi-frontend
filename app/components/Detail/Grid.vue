@@ -25,7 +25,7 @@
 								status: col?.status
 							}"
 							@click="get_detail(col.id)"
-							
+							v-if="col"
 						/>
 					</td>
 				</tr>
@@ -40,6 +40,7 @@
 import type {DetailInterface} from "~/interfaces";
 import create_matrix from "~/helpers/create_matrix";
 import unique_data_from_array from "~/helpers/unique_data_from_array";
+const {$auth_fetch} = useNuxtApp()
 const { set_selected_detail, selected_detail } = useSectorComposable()
 
 const {current_details} = useSectorComposable()
@@ -51,7 +52,8 @@ const matrix: ComputedRef<DetailInterface[][]> = computed(() => {
 const rows = computed(() => unique_data_from_array(current_details.value as any, 'row'))
 
 const get_detail = async (id: number) => {
-	await $fetch<DetailInterface>(`/api/detail/${id}`).then((data) => {
+	//await $fetch<DetailInterface>(`/api/detail/${id}`).then((data) => {
+	await $auth_fetch<DetailInterface>(`/api/detail/select/${id}`).then((data) => {
 		set_selected_detail(data)
 	})
 	await useRouter().push({ hash: '#info' })
