@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 
 import * as preline from 'preline/plugin'
 import * as tailwind_forms from '@tailwindcss/forms'
+import * as daisyui from 'daisyui'
 
 
 export default <Partial<Config>>{
@@ -64,8 +65,9 @@ export default <Partial<Config>>{
     },
   },
   plugins: [
-    preline.default,
-    tailwind_forms.default
+    //preline.default,
+    tailwind_forms.default,
+    daisyui.default,
   ]
 
 }

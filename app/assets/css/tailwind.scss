@@ -134,7 +134,7 @@ html, #__nuxt {
 }
 
 .dropdown {
-	@apply min-w-48 w-48 z-10 mt-2 opacity-0 transition-[opacity,margin] duration-75 hs-dropdown-open:opacity-100 text-sm rounded-lg overflow-hidden shadow-sm dark:shadow-white border #{$surface};
+	@apply min-w-48 w-48 z-10 mt-2 opacity-0 transition-[opacity,margin] duration-75 /*hs-dropdown-open:opacity-100*/ text-sm rounded-lg overflow-hidden shadow-sm dark:shadow-white border #{$surface};
 }
 
 .dropdown a {

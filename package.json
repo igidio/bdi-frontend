@@ -17,8 +17,6 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.8.0",
     "@popperjs/core": "^2.11.8",
-    "@preline/dropdown": "^2.5.0",
-    "@preline/overlay": "^2.6.0",
     "nuxt": "^3.14.1592",
     "pinia": "^2.2.8",
     "preline": "^2.5.1",
@@ -31,6 +29,7 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@iconify-json/tabler": "^1.2.10",
     "@tailwindcss/forms": "^0.5.9",
+    "daisyui": "^4.12.22",
     "husky": "^9.1.7",
     "sass": "^1.82.0"
   }
