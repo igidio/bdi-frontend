@@ -1,5 +1,4 @@
 <template>
-	<DetailModalDetail/>
 	<div class="flex flex-col tablet:flex-row gap-4">
 		<DetailMap class="block tablet:hidden"/>
 		<AppCard class="w-full">
