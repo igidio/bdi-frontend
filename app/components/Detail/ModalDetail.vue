@@ -26,18 +26,25 @@ const {
 const error_message: Ref<undefined | string> = ref()
 
 const make_reservation = async () => {
-	const a = await $auth_fetch('/api/reservation', {
-		method: 'POST',
-		body: {
-			id_detail: selected_detail.value?.detail.id
-		}
-	}).then((data) => {
-		console.log(data)
-		close_modal()
-		// TODO: Add success message
-	}).catch((error) => {
-		console.error(error.data)
-		error_message.value = error.data.message
-	})
+	// const a = await $auth_fetch('/api/reservation', {
+	// 	method: 'POST',
+	// 	body: {
+	// 		id_detail: selected_detail.value?.detail.id
+	// 	}
+	// }).then((data) => {
+	// 	console.log(data)
+	// 	close_modal()
+	// 	// TODO: Add success message
+	// }).catch((error) => {
+	// 	console.error(error.data)
+	// 	error_message.value = error.data.message
+	// })
+	useNuxtApp().$toast(
+		'Reserva realizada con éxito', {
+			type: 'success',
+			position: "bottom-right",
+		});
+	close_modal();
+
 }
 </script>

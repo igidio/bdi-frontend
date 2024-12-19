@@ -55,7 +55,9 @@ export default defineNuxtConfig({
 			collections: ['tabler']
 		}
 	},
-	css: ["~/assets/css/tailwind.scss"],
+	css: [
+		"~/assets/css/tailwind.scss",
+	],
 	vite: {
 		css: {
 			preprocessorOptions: {
