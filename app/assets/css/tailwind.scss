@@ -133,14 +133,6 @@ html, #__nuxt {
 	@apply text-[15px] font-bold text-gray-800 dark:text-white
 }
 
-.dropdown {
-	@apply min-w-48 w-48 z-10 mt-2 opacity-0 transition-[opacity,margin] duration-75 /*hs-dropdown-open:opacity-100*/ text-sm rounded-lg overflow-hidden shadow-sm dark:shadow-white border #{$surface};
-}
-
-.dropdown a {
-	@apply block py-2 px-4 hover:bg-primary-100;
-}
-
 .hyper {
 	@apply text-primary-600 font-semibold hover:underline;
 }

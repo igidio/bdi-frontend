@@ -8,8 +8,8 @@
 		<div class="flex flex-row gap-2">
 			
 			<AppDarkLightToggle/>
-			<NotificationsButton/>
-			<UserButton/>
+			<NotificationsDropdownButton/>
+			<UserDropdownButton/>
 		
 		
 		</div>
