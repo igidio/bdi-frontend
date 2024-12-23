@@ -83,10 +83,14 @@ import {AppCard} from "#components";
 import ModalDetail from "~/components/Detail/ModalDetail.vue";
 import ModalCancelReservation from "~/components/Detail/ModalCancelReservation.vue";
 
+const sectorComposable = useSectorComposable()
 const {
 	delete_selected_detail,
-	selected_detail
-} = useSectorComposable()
+
+} = sectorComposable
+
+//const {selected_detail} = toRefs(sectorComposable)
+const {selected_detail} = sectorComposable
 
 const {user, user_role} = useUserStore()
 

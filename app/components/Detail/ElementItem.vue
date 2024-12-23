@@ -2,20 +2,20 @@
 	<button
 		class="h-10 w-10 rounded-md flex items-center justify-center transition-colors"
 		:class="{
-      'bg-orange-400 hover:opacity-80': type == DetailTypeEnum.borde && status === DetailStatusEnum.disponible,
-      'bg-emerald-400 hover:opacity-80': type == DetailTypeEnum.camino && status === DetailStatusEnum.disponible,
-      'bg-yellow-400 hover:opacity-80': type == DetailTypeEnum.centro && status === DetailStatusEnum.disponible,
-      'bg-emerald-100': status === DetailStatusEnum.vendido,
-      'bg-yellow-100': status === DetailStatusEnum.reservado,
-      'bg-fuchsia-200': status === DetailStatusEnum.no_disponible,
+			'border-4 border-black/50 dark:border-slate-100': data.active,
+      'bg-orange-400 hover:opacity-80': data.type == DetailTypeEnum.borde && data.status === DetailStatusEnum.disponible,
+      'bg-emerald-400 hover:opacity-80': data.type == DetailTypeEnum.camino && data.status === DetailStatusEnum.disponible,
+      'bg-yellow-400 hover:opacity-80': data.type == DetailTypeEnum.centro && data.status === DetailStatusEnum.disponible,
+      'bg-emerald-100': data.status === DetailStatusEnum.vendido,
+      'bg-yellow-100': data.status === DetailStatusEnum.reservado,
+      'bg-fuchsia-200': data.status === DetailStatusEnum.no_disponible,
     }"
 	>
-
     <span class="font-bold text-sm">
-      {{ (status == DetailStatusEnum.vendido) ? 'V' : value }}
+      {{ (data.status == DetailStatusEnum.vendido) ? 'V' : data.value }}
     </span>
-	
-	
+
+
 	</button>
 
 </template>
@@ -27,11 +27,12 @@ import {DetailStatusEnum, DetailTypeEnum} from '~/enums'
 interface Props {
 	value: number,
 	status?: DetailStatusEnum,
-	type?: DetailTypeEnum
+	type?: DetailTypeEnum,
+	active?: boolean
 }
 
-const {data} = defineProps<{ data: Props }>()
-const {value, status, type} = data
+const props = defineProps<{ data: Props }>()
+const {data} =  toRefs(props)
 
 
 </script>

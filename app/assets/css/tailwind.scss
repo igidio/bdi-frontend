@@ -15,58 +15,63 @@ $input-default: 'bg-transparent';
 $input-gray-default: 'bg-gray-100 dark:bg-gray-900';
 
 @layer base {
-	:root {
-		--primary-default: theme(colors.primary.500);
-		--primary-hover: theme(colors.primary.600);
-		--primary-active: theme(colors.primary.700);
-		--surface-default: theme(colors.shark.900);
-	}
+  :root {
+    --primary-default: theme(colors.primary.500);
+    --primary-hover: theme(colors.primary.600);
+    --primary-active: theme(colors.primary.700);
+    --surface-default: theme(colors.shark.900);
+  }
+}
+
+[data-theme="light"] .btn {
+  @apply text-white rounded-full bg-red-500;
 }
 
 /* GENERIC */
 body {
-	@apply text-base font-normal font-['Poppins'] #{$background} dark:bg-shark-950 dark:text-white;
+  @apply text-base font-normal font-['Poppins'] #{$background} dark:bg-shark-950 dark:text-white;
 }
 
 .main {
-	@apply flex flex-col tablet:mb-0 tablet:place-content-between h-screen content-between;
+  @apply flex flex-col tablet:mb-0 tablet:place-content-between h-screen content-between;
 }
 
 html, #__nuxt {
-	@apply h-full scroll-auto;
+  @apply h-full scroll-auto;
 }
+
 /* COLORS */
 .primary {
-	@apply border border-transparent text-white  #{$primary-default} #{$primary-hover} #{$primary-active};
+  @apply border border-transparent text-white  #{$primary-default} #{$primary-hover} #{$primary-active};
 }
 
 .black {
-	@apply border border-transparent text-white bg-black hover:bg-black/80 active:bg-black/70;
+  @apply border border-transparent text-white bg-black hover:bg-black/80 active:bg-black/70;
 }
 
 .secondary {
-	@apply border border-transparent bg-slate-200 text-black hover:bg-slate-300 focus:outline-none focus:bg-slate-300 active:bg-slate-400;
+  @apply border border-transparent bg-slate-200 text-black hover:bg-slate-300 focus:outline-none focus:bg-slate-300 active:bg-slate-400;
 }
 
 .surface {
-	@apply dark:bg-[var(--surface-default)];
+  @apply dark:bg-[var(--surface-default)];
 }
 
 /* BUTTONS */
 .button {
-	@apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg transition-colors;
+  @apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg transition-colors;
 }
 
 .ghost {
-	@apply bg-transparent text-primary-600 hover:bg-primary-100 focus:outline-none focus:bg-primary-100;
+  @apply bg-transparent text-primary-600 hover:bg-primary-100 focus:outline-none focus:bg-primary-100;
 }
 
 .button:disabled {
-	@apply opacity-50 pointer-events-none;
+  @apply opacity-50 pointer-events-none;
 }
 
 .block {
-	@apply w-full justify-center;
+  @apply w-full justify-center;
 }
 
 /* FORMS */
@@ -75,157 +80,160 @@ html, #__nuxt {
 //}
 
 .input {
-	@apply py-3 px-4 block w-full border-gray-200 rounded-lg text-sm dark:bg-shark-400;
-	&.gray {
-		@apply #{$input-gray-default} border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600;
-	}
+  @apply py-3 px-4 block w-full border-gray-200 rounded-lg text-sm dark:bg-shark-400;
+  &.gray {
+    @apply #{$input-gray-default} border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600;
+  }
 }
 
 .select {
-	@apply py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm;
+  @apply py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm;
 
 }
+
 .select.gray {
-	@apply border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600 border-shark-200 dark:border-shark-500 #{$input-gray-default};
+  @apply border-transparent focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600 border-shark-200 dark:border-shark-500 #{$input-gray-default};
 }
 
 .select.primary {
-	@apply focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600;
+  @apply focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600;
 }
 
 /* SIDEBAR */
 .sidebar {
-	@apply #{$surface} h-screen p-4 flex-col gap-2 transition-width gap-2;
-	&-desktop {
-		@apply hidden desktop:flex sticky top-0;
-	}
-	&-mobile {
-		@apply flex desktop:hidden;
-	}
+  @apply #{$surface} h-screen p-4 flex-col gap-2 transition-width gap-2;
+  &-desktop {
+    @apply hidden desktop:flex sticky top-0;
+  }
+
+  &-mobile {
+    @apply flex desktop:hidden;
+  }
 }
+
 .sidebar.min {
-	@apply w-16 ;
+  @apply w-16 ;
 }
 
 /* MENU BAR */
 .menu-item {
-	@apply
-	bg-primary-500 bg-opacity-0 hover:bg-opacity-10 active:bg-opacity-20
-	dark:bg-white dark:bg-opacity-0 dark:hover:bg-opacity-10
-	w-full transition-colors p-2 items-center text-sm inline-flex gap-2 rounded-md cursor-pointer  dark:active:bg-opacity-20 overflow-hidden;
-	span {
-		@apply transition-opacity duration-200 relative text-nowrap overflow-hidden;
-	}
+  @apply
+  bg-primary-500 bg-opacity-0 hover:bg-opacity-10 active:bg-opacity-20
+  dark:bg-white dark:bg-opacity-0 dark:hover:bg-opacity-10
+  w-full transition-colors p-2 items-center text-sm inline-flex gap-2 rounded-md cursor-pointer  dark:active:bg-opacity-20 overflow-hidden;
+  span {
+    @apply transition-opacity duration-200 relative text-nowrap overflow-hidden;
+  }
 }
 
 
-
 .menu-item .icon {
-	@apply bg-primary-500 dark:bg-primary-50 min-w-4;
+  @apply bg-primary-500 dark:bg-primary-50 min-w-4;
 }
 
 /* CARD */
 .card {
-	@apply flex flex-col bg-white border shadow-sm rounded-xl surface dark:border-neutral-700 dark:shadow-neutral-700/70 p-4 gap-4 overflow-hidden;
+  @apply flex flex-col bg-white border shadow-sm rounded-xl surface dark:border-neutral-700 dark:shadow-neutral-700/70 p-4 gap-4 overflow-hidden;
 }
 
 .card .title {
-	@apply text-[15px] font-bold text-gray-800 dark:text-white
+  @apply text-[15px] font-bold text-gray-800 dark:text-white
 }
 
 .hyper {
-	@apply text-primary-600 font-semibold hover:underline;
+  @apply text-primary-600 font-semibold hover:underline;
 }
 
 /* CHECKBOX */
 .checkbox {
-	@apply shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-primary-500 dark:checked:border-primary-500 dark:focus:ring-offset-gray-800;
+  @apply shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-primary-500 dark:checked:border-primary-500 dark:focus:ring-offset-gray-800;
 }
 
 /* HEADER */
 .header {
-	@apply #{$background} py-4 w-full border-b-[1px] z-10 #{$border};
+  @apply #{$background} py-4 w-full border-b-[1px] z-10 #{$border};
 }
 
 /* BADGES */
 .badge {
-	@apply inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium;
+  @apply inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium;
 }
 
 .badge.dark {
-	@apply bg-gray-800 text-white dark:bg-white dark:text-neutral-800;
+  @apply bg-gray-800 text-white dark:bg-white dark:text-neutral-800;
 }
 
 .badge.gray {
-	@apply bg-gray-500 text-white;
+  @apply bg-gray-500 text-white;
 }
 
 .badge.success {
-	@apply bg-teal-500 text-white;
+  @apply bg-teal-500 text-white;
 }
 
 .badge.primary {
-	@apply bg-primary-600 text-white dark:bg-primary-500;
+  @apply bg-primary-600 text-white dark:bg-primary-500;
 }
 
 .badge.danger {
-	@apply bg-red-500 text-white;
+  @apply bg-red-500 text-white;
 }
 
 .badge.warning {
-	@apply bg-yellow-500 text-white;
+  @apply bg-yellow-500 text-white;
 }
 
 .badge.light {
-	@apply bg-white text-gray-600;
+  @apply bg-white text-gray-600;
 }
 
 
 .badge.dark.soft {
-	@apply bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white;
+  @apply bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white;
 }
 
 .badge.gray.soft {
-	@apply bg-gray-50 text-gray-500 dark:bg-white/10 dark:text-white;
+  @apply bg-gray-50 text-gray-500 dark:bg-white/10 dark:text-white;
 }
 
 .badge.success.soft {
-	@apply bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500;
+  @apply bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500;
 }
 
 .badge.primary.soft {
-	@apply bg-primary-100 text-primary-800 dark:bg-primary-800/30 dark:text-primary-500;
+  @apply bg-primary-100 text-primary-800 dark:bg-primary-800/30 dark:text-primary-500;
 }
 
 .badge.danger.soft {
-	@apply bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-500;
+  @apply bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-500;
 }
 
 .badge.primary.soft {
-	@apply bg-yellow-100 text-yellow-800 dark:bg-yellow-800/30 dark:text-yellow-500;
+  @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-800/30 dark:text-yellow-500;
 }
 
 .badge.primary.soft {
-	@apply bg-white/10 text-white;
+  @apply bg-white/10 text-white;
 }
 
 /* ICON */
 .icon.menu {
-	@apply w-5 h-5;
+  @apply w-5 h-5;
 }
 
 hr {
-	@apply #{$border};
+  @apply #{$border};
 }
 
 /* MAP-SECTOR */
 .path {
-	fill: gray;
+  fill: gray;
 }
+
 .sector {
-	@apply fill-primary-300 hover:fill-primary-400 transition-colors;
+  @apply fill-primary-300 hover:fill-primary-400 transition-colors;
 }
 
 .sector.selected {
-	@apply fill-primary-600;
+  @apply fill-primary-600;
 }

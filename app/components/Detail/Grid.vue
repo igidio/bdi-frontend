@@ -22,7 +22,8 @@
 							:data="{
 								type: col?.type,
 								value: col?.value,
-								status: col?.status
+								status: col?.status,
+								active: col.value === selected_detail?.detail.value
 							}"
 							@click="get_detail(col.id)"
 							v-if="col"
@@ -40,8 +41,8 @@
 import type {DetailInterface} from "~/interfaces";
 import create_matrix from "~/helpers/create_matrix";
 import unique_data_from_array from "~/helpers/unique_data_from_array";
-const {$auth_fetch} = useNuxtApp()
-const { set_selected_detail, selected_detail } = useSectorComposable()
+
+const { set_selected_detail, selected_detail, get_detail } = useSectorComposable()
 
 const {current_details} = useSectorComposable()
 const matrix: ComputedRef<DetailInterface[][]> = computed(() => {
@@ -51,12 +52,5 @@ const matrix: ComputedRef<DetailInterface[][]> = computed(() => {
 
 const rows = computed(() => unique_data_from_array(current_details.value as any, 'row'))
 
-const get_detail = async (id: number) => {
-	//await $fetch<DetailInterface>(`/api/detail/${id}`).then((data) => {
-	await $auth_fetch<DetailInterface>(`/api/detail/select/${id}`).then((data) => {
-		set_selected_detail(data)
-	})
-	await useRouter().push({ hash: '#info' })
-	console.log(selected_detail.value)
-}
+
 </script>

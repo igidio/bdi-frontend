@@ -8,6 +8,8 @@ const current_details: Ref<DetailInterface[] | undefined> = ref(undefined)
 const selected_detail: Ref<SelectedDetailInterface | undefined> = ref(undefined)
 const heads: Ref<HeadInterface[]> = ref([])
 
+
+
 interface SelectedDetailInterface {
 	detail: DetailInterface;
 	reservation_info?: {
@@ -16,6 +18,7 @@ interface SelectedDetailInterface {
 }
 
 export function useSectorComposable() {
+	const {$auth_fetch} = useNuxtApp()
 
 	const set_head = (val: HeadInterface) => {
 		current_head.value = val
@@ -36,11 +39,19 @@ export function useSectorComposable() {
 		selected_detail.value = undefined
 	}
 
+	const get_detail = async (id: number) => {
+		await $auth_fetch<SelectedDetailInterface>(`/api/detail/select/${id}`).then((data:SelectedDetailInterface) => {
+			set_selected_detail(data)
+		})
+		await useRouter().push({ hash: '#info' })
+	}
+
 	return {
 		heads, current_head, set_head, current_details,
 		get_details,
 		set_selected_detail,
 		delete_selected_detail,
+		get_detail,
 		selected_detail
 	};
 }

@@ -4,7 +4,7 @@
 			<AppSidebarMobile/>
 			<AppSidebarDesktop/>
 		</div>
-		<div class="w-1 flex-1 p-4">
+		<div class="w-1 flex-1 px-4">
 			<AppHeader/>
 			<div class="py-4">
 				<slot/>
