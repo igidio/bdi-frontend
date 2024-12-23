@@ -37,7 +37,11 @@ body {
 }
 
 html, #__nuxt {
-  @apply h-full scroll-auto;
+  @apply h-full;
+}
+
+* {
+  @apply scrollbar scrollbar-w-1 scrollbar-thumb-slate-700 scrollbar-track-slate-300;
 }
 
 /* COLORS */
@@ -237,3 +241,4 @@ hr {
 .sector.selected {
   @apply fill-primary-600;
 }
+

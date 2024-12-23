@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col tablet:flex-row gap-4">
+	<div class="flex flex-col tablet:flex-row gap-2 tablet:h-[calc(100vh-100px)] tablet:overflow-auto">
 		<DetailMap class="block tablet:hidden"/>
 		<AppCard class="w-full">
 			<select v-model="current_head" @change="get_details()" class="select gray">
@@ -8,15 +8,21 @@
 			</select>
 			<DetailGrid v-if="current_head"></DetailGrid>
 		</AppCard>
-		<div class="w-full tablet:w-48 gap-4 flex flex-col sticky top-20 h-full">
+
+		<div class="w-full tablet:w-48 gap-2 flex flex-col sticky top-20 h-full overflow-y-scroll">
+
 			<div class="hidden tablet:block">
 				<DetailMap/>
 			</div>
+
 			<div id="info"></div>
+
 			<DetailInfo v-if="selected_detail && current_details"/>
+
 			<div class="hidden tablet:block" v-else-if="current_details">
 				<DetailSector class="hidden tablet:block"/>
 			</div>
+
 		</div>
 
 	</div>

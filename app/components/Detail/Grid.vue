@@ -7,15 +7,17 @@
 			</div>
 		</div>
 		
-		<div class="flex flex-row overflow-x-auto">
-			
-			<table>
-				<tbody>
+		<div class="flex flex-col overflow-scroll">
+			<table class="sticky top-0 bg-white z-10 py-0.5">
 				<tr>
 					<td v-for="(_, index) in matrix[0]" :key="index">
 						<DetailHeaderItem :value="index + 1"/>
 					</td>
 				</tr>
+			</table>
+			<table>
+				<tbody>
+
 				<tr v-for="(row, index_row) in matrix" :key="index_row">
 					<td v-for="(col) in row" :key="col?.id" v-if="row.length > 0">
 						<DetailElementItem

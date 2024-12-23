@@ -1,7 +1,8 @@
 import type {Config} from 'tailwindcss'
 
-import * as tailwind_forms from '@tailwindcss/forms'
+import TailwindForms from '@tailwindcss/forms'
 import * as daisyui from 'daisyui'
+import tailwindScrollbar from "tailwind-scrollbar"
 
 
 export default <Partial<Config>>{
@@ -74,8 +75,9 @@ export default <Partial<Config>>{
 		]
 	},
 	plugins: [
-		tailwind_forms.default,
-		daisyui.default,
+		TailwindForms,
+		//daisyui.default,
+		tailwindScrollbar({ nocompatible: true }),
 	]
 
 }
