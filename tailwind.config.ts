@@ -1,7 +1,6 @@
 import type {Config} from 'tailwindcss'
 
 import TailwindForms from '@tailwindcss/forms'
-import * as daisyui from 'daisyui'
 import tailwindScrollbar from "tailwind-scrollbar"
 
 
@@ -11,7 +10,7 @@ export default <Partial<Config>>{
 	content: [
 		"./index.html",
 		"./src/**/*.{vue,js,ts,jsx,tsx,vue}",
-		'./node_modules/preline/preline.js',
+		"./app/app.config.ts",
 	],
 	theme: {
 		extend: {
@@ -19,7 +18,7 @@ export default <Partial<Config>>{
 				'width': 'width',
 			},
 			colors: {
-				primary: {
+				waikawa: {
 					'50': '#f3f6fa',
 					'100': '#e9eef6',
 					'200': '#d7dfee',
@@ -64,19 +63,8 @@ export default <Partial<Config>>{
 			desktop: "768px",
 		},
 	},
-	daisyui: {
-		themes: [
-			{
-				light: {
-					...require("daisyui/src/theming/themes")["light"],
-					//primary: '#808ac2',
-				},
-			}
-		]
-	},
 	plugins: [
 		TailwindForms,
-		//daisyui.default,
 		tailwindScrollbar({ nocompatible: true }),
 	]
 

@@ -1,15 +1,27 @@
 <template>
-	<div class="flex flex-col tablet:flex-row gap-2 tablet:h-[calc(100vh-100px)] tablet:overflow-auto">
-		<DetailMap class="block tablet:hidden"/>
-		<AppCard class="w-full">
-			<select v-model="current_head" @change="get_details()" class="select gray">
-				<option selected disabled :value="undefined">Selecciona un sector</option>
-				<option v-for="head in heads" :key="head.id" :value="head">Sector {{ head.sector }}: {{ head.name }}</option>
-			</select>
-			<DetailGrid v-if="current_head"></DetailGrid>
-		</AppCard>
+	<div class="flex flex-col tablet:flex-row gap-2 tablet:max-h-[calc(100vh-100px)]">
 
-		<div class="w-full tablet:w-48 gap-2 flex flex-col sticky top-20 h-full overflow-y-scroll">
+		<div class="w-full flex flex-col overflow-hidden gap-2">
+			<DetailMap class="block tablet:hidden"/>
+			<AppCard class="">
+				<div class="my-2">
+					<select v-model="current_head" @change="get_details()" class="select gray">
+						<option selected disabled :value="undefined">Selecciona un sector</option>
+						<option v-for="head in heads" :key="head.id" :value="head">Sector {{ head.sector }}: {{
+								head.name
+							}}
+						</option>
+					</select>
+				</div>
+
+				<div class="overflow-scroll tablet:h-[calc(100vh-210px)]">
+				<DetailGrid v-if="current_head"/>
+				</div>
+
+			</AppCard>
+		</div>
+
+		<div class="w-full tablet:w-48 gap-2 flex flex-col overflow-y-scroll fadeee">
 
 			<div class="hidden tablet:block">
 				<DetailMap/>
@@ -20,7 +32,7 @@
 			<DetailInfo v-if="selected_detail && current_details"/>
 
 			<div class="hidden tablet:block" v-else-if="current_details">
-				<DetailSector class="hidden tablet:block"/>
+				<DetailSector/>
 			</div>
 
 		</div>
@@ -47,3 +59,16 @@ definePageMeta({
 	layout: "admin",
 })
 </script>
+
+<style>
+.fadeee {
+	@apply py-8;
+	--mask: linear-gradient(to bottom,
+	rgba(0,0,0, 1) 95%,
+	rgba(0,0,0, 0) 100%
+	) 100% 50% / 100% 100% repeat-x;
+
+	mask: var(--mask);
+
+}
+</style>

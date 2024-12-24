@@ -16,15 +16,11 @@ $input-gray-default: 'bg-gray-100 dark:bg-gray-900';
 
 @layer base {
   :root {
-    --primary-default: theme(colors.primary.500);
-    --primary-hover: theme(colors.primary.600);
-    --primary-active: theme(colors.primary.700);
-    --surface-default: theme(colors.shark.900);
+    --primary-default: theme(colors.waikawa.500);
+    --primary-hover: theme(colors.waikawa.600);
+    --primary-active: theme(colors.waikawa.700);
+    --surface-default: theme(colors.waikawa.900);
   }
-}
-
-[data-theme="light"] .btn {
-  @apply text-white rounded-full bg-red-500;
 }
 
 /* GENERIC */
@@ -41,7 +37,7 @@ html, #__nuxt {
 }
 
 * {
-  @apply scrollbar scrollbar-w-1 scrollbar-thumb-slate-700 scrollbar-track-slate-300;
+  @apply scrollbar scrollbar-w-[3px] scrollbar-h-[3px] scrollbar-thumb-slate-700/20 scrollbar-thumb-rounded-lg;
 }
 
 /* COLORS */
@@ -137,7 +133,7 @@ html, #__nuxt {
 
 /* CARD */
 .card {
-  @apply flex flex-col bg-white border shadow-sm rounded-xl surface dark:border-neutral-700 dark:shadow-neutral-700/70 p-4 gap-4 overflow-hidden;
+  @apply flex flex-col bg-white border shadow-sm rounded-xl surface dark:border-neutral-700 dark:shadow-neutral-700/70 p-4 gap-4;
 }
 
 .card .title {

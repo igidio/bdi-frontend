@@ -25,7 +25,7 @@
 				<td>{{ e.value }}</td>
 			</tr>
 		</table>
-	
+
 	</component>
 
 </template>
