@@ -9,10 +9,10 @@ export default defineNuxtConfig({
 
 	modules: [
 		'@nuxt/ui',
-		'@nuxtjs/tailwindcss',
+		//'@nuxtjs/tailwindcss',
 		'@nuxt/icon',
-		'@pinia/nuxt',
 		'@nuxtjs/color-mode',
+		'@pinia/nuxt',
 	],
 	colorMode: {
 		classSuffix: '',

@@ -1,9 +1,14 @@
 <template>
 	<div class="main">
 		<NuxtLayout>
-			<NuxtPage/>
+<!--			<UContainer>-->
+				<NuxtPage />
+<!--			</UContainer>-->
 		</NuxtLayout>
 
+
+
+		<UNotifications/>
 	</div>
 </template>
 

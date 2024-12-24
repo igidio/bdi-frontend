@@ -9,8 +9,8 @@ export default <Partial<Config>>{
 	darkMode: 'class',
 	content: [
 		"./index.html",
-		"./src/**/*.{vue,js,ts,jsx,tsx,vue}",
-		"./app/app.config.ts",
+		"./app/**/*.{vue,js,ts,jsx,tsx,vue}",
+		"./app/*.{vue,js,ts,jsx,tsx,vue}",
 	],
 	theme: {
 		extend: {

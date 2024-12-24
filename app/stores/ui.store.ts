@@ -3,18 +3,18 @@ import {ref} from "vue";
 
 export const useUiStore = defineStore('ui', () => {
 
-	const modal = ref(false)
+	const is_open = ref(false)
 	const modal_component: Ref<Component | undefined> = shallowRef(undefined)
 	const modal_title:Ref<string|undefined> = ref(undefined)
 
 	const myModal = ref<HTMLDialogElement | null>(null)
 
 	const show_modal = () => {
-		myModal.value?.showModal();
+		is_open.value = true
 	}
 
 	const close_modal = () => {
-		myModal.value?.close();
+		is_open.value = false
 	}
 
 	const assign_title = (title: string) => {
@@ -39,5 +39,5 @@ export const useUiStore = defineStore('ui', () => {
 		show_modal();
 	}
 
-	return {myModal, modal_component, modal_title, show_modal, assign_component, close_modal, modal_generate}
+	return {myModal, modal_component, modal_title, is_open, show_modal, assign_component, close_modal, modal_generate}
 })

@@ -41,11 +41,8 @@ const make_reservation = async () => {
 	}).then((data) => {
 		console.log(data)
 		close_modal()
-		useNuxtApp().$toast(
-			'Reserva realizada con éxito', {
-				type: 'success',
-				position: "bottom-right",
-			});
+
+		useToast().add({ title: 'Reserva realizada con éxito' })
 		current_details.value?.find((detail: DetailInterface) => {
 			if (detail.id == selected_detail.value?.detail.id) {
 				detail.status = DetailStatusEnum.reservado

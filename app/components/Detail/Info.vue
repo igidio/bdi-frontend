@@ -13,7 +13,6 @@
 			</div>
 		</div>
 
-
 		<div v-if="user_role === UserRoleEnum.client">
 			<div
 				v-if="!show_sale_info && selected_detail?.reservation_info?.is_available && selected_detail.detail.status === DetailStatusEnum.disponible"

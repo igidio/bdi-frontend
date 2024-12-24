@@ -14,7 +14,7 @@
 					</select>
 				</div>
 
-				<div class="overflow-scroll tablet:h-[calc(100vh-210px)]">
+				<div class="overflow-scroll tablet:h-[calc(100vh-215px)]">
 				<DetailGrid v-if="current_head"/>
 				</div>
 
