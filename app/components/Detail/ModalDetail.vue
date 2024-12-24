@@ -26,7 +26,8 @@ const {close_modal} = useUiStore();
 const {
 	selected_detail,
 	current_details,
-	get_detail
+	get_detail,
+	change_status
 } = useSectorComposable()
 
 const error_message: Ref<undefined | string> = ref()
@@ -39,15 +40,9 @@ const make_reservation = async () => {
 			id_detail: selected_detail.value?.detail.id
 		}
 	}).then((data) => {
-		console.log(data)
 		close_modal()
-
 		useToast().add({ title: 'Reserva realizada con éxito' })
-		current_details.value?.find((detail: DetailInterface) => {
-			if (detail.id == selected_detail.value?.detail.id) {
-				detail.status = DetailStatusEnum.reservado
-			}
-		})
+		change_status(DetailStatusEnum.reservado)
 		get_detail( selected_detail.value!.detail.id )
 	}).catch((error) => {
 		console.error(error.data)

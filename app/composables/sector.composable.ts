@@ -1,5 +1,6 @@
 import type {DetailInterface, HeadInterface} from "~/interfaces";
 import unique_data_from_array from "~/helpers/unique_data_from_array";
+import {DetailStatusEnum} from "~/enums";
 
 const current_head: Ref<HeadInterface | undefined> = ref(undefined)
 
@@ -7,7 +8,6 @@ const current_details: Ref<DetailInterface[] | undefined> = ref(undefined)
 
 const selected_detail: Ref<SelectedDetailInterface | undefined> = ref(undefined)
 const heads: Ref<HeadInterface[]> = ref([])
-
 
 
 interface SelectedDetailInterface {
@@ -40,10 +40,21 @@ export function useSectorComposable() {
 	}
 
 	const get_detail = async (id: number) => {
-		await $auth_fetch<SelectedDetailInterface>(`/api/detail/select/${id}`).then((data:SelectedDetailInterface) => {
+		await $auth_fetch<SelectedDetailInterface>(`/api/detail/select/${id}`).then((data: SelectedDetailInterface) => {
 			set_selected_detail(data)
 		})
-		await useRouter().push({ hash: '#info' })
+		await useRouter().push({hash: '#info'})
+	}
+
+	const change_status = (
+		status: DetailStatusEnum
+	) => {
+		if (selected_detail.value === undefined) return
+		current_details.value?.find((detail: DetailInterface) => {
+			if (detail.id == selected_detail.value?.detail.id) {
+				detail.status = status
+			}
+		})
 	}
 
 	return {
@@ -52,6 +63,7 @@ export function useSectorComposable() {
 		set_selected_detail,
 		delete_selected_detail,
 		get_detail,
+		change_status,
 		selected_detail
 	};
 }

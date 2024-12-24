@@ -1,8 +1,8 @@
 <template>
 	<p>Al cancelar la reserva (más detalles de lo que va a pasar):</p>
 	<div class="flex flex-row justify-end gap-4 w-full">
-		<button class="btn" @click="close_modal()">Volver</button>
-		<button class="btn btn-primary" @click="cancel_reservation()">
+		<button class="button secondary" @click="close_modal()">Volver</button>
+		<button class="button primary" @click="cancel_reservation()">
 			<Icon name="tabler:address-book" size="16"/>
 			Cancelar reserva
 		</button>
@@ -11,12 +11,27 @@
 </template>
 
 <script setup lang="ts">
+import {DetailStatusEnum} from "~/enums";
+
 const {$auth_fetch} = useNuxtApp()
 const {close_modal} = useUiStore();
-
+const {
+	selected_detail,
+	current_details,
+	get_detail,
+	change_status
+} = useSectorComposable()
 const error_message: Ref<undefined | string> = ref()
 
-const cancel_reservation = () => {
-	// TODO: Mensaje
+const cancel_reservation = async () => {
+	if (selected_detail.value && !selected_detail.value.detail.id) return;
+	await $auth_fetch(`/api/reservation/deactivate/${selected_detail.value?.detail.id}`, {
+		method: 'PATCH'
+	}).then((data) => {
+		close_modal()
+		change_status(DetailStatusEnum.disponible)
+		useToast().add({ title: 'Reserva cancelada' })
+		get_detail( selected_detail.value!.detail.id )
+	})
 }
 </script>
