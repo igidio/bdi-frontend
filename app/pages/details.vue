@@ -21,7 +21,7 @@
 			</AppCard>
 		</div>
 
-		<div class="w-full tablet:w-48 gap-2 flex flex-col overflow-y-scroll fadeee">
+		<div class="w-full tablet:w-48 gap-2 flex flex-col overflow-y-scroll menu-fade">
 
 			<div class="hidden tablet:block">
 				<DetailMap/>
@@ -59,16 +59,3 @@ definePageMeta({
 	layout: "admin",
 })
 </script>
-
-<style>
-.fadeee {
-	@apply py-8;
-	--mask: linear-gradient(to bottom,
-	rgba(0,0,0, 1) 95%,
-	rgba(0,0,0, 0) 100%
-	) 100% 50% / 100% 100% repeat-x;
-
-	mask: var(--mask);
-
-}
-</style>
