@@ -1,12 +1,21 @@
 <template>
-	<AppCard class="">
+	<AppCard>
+
 		<div class="flex flex-row">
 			<button class="button secondary block" @click="delete_selected_detail()">Cerrar</button>
 		</div>
 
-		<span class="text-xl font-semibold">Espacio {{ selected_detail?.detail.value }}</span>
+		<USkeleton class="h-8 w-full" v-if="loading_detail"/>
+		<span
+			class="text-xl font-semibold"
+			v-else
+		>Espacio {{ selected_detail?.detail.value }}
+		</span>
 
-		<div class="text-sm">
+		<div class="flex flex-col gap-2" v-if="loading_detail">
+			<USkeleton class="h-6" v-for="i in 3"/>
+		</div>
+		<div class="text-sm" v-else>
 			<div class="flex flex-col mb-2" v-for="element in elements">
 				<span class="font-semibold">{{ element.name }}</span>
 				<span>{{ element.value }}</span>
@@ -20,7 +29,9 @@
 				<button class="button primary block" @click="useUiStore().modal_generate({
 					title: 'Reservar espacio ' + selected_detail?.detail.value,
 					component: ModalDetail,
-				})">Reservar
+				})"
+				:disabled="loading_detail"
+				>Reservar
 				</button>
 			</div>
 
@@ -50,11 +61,9 @@ import ModalCancelReservation from "~/components/Detail/ModalCancelReservation.v
 const sectorComposable = useSectorComposable()
 const {
 	delete_selected_detail,
-
+	selected_detail,
+	loading_detail
 } = sectorComposable
-
-//const {selected_detail} = toRefs(sectorComposable)
-const {selected_detail} = sectorComposable
 
 const {user, user_role} = useUserStore()
 

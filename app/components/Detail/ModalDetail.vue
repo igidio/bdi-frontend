@@ -1,18 +1,25 @@
 <template>
-	<p class="py-4">Una vez realizada la reserva debe tiene una semana de plazo para pagar dicho espacio, caso contrario
+	<p>Una vez realizada la reserva debe tiene una semana de plazo para pagar dicho espacio, caso contrario
 		el espacio volverá a estar disponible, puede cancelar la reserva en cualquier momento.</p>
+	<UAlert
+		v-if="error_message"
+		icon="tabler:alert-hexagon"
+		color="red"
+		variant="subtle"
+		title=""
+		:description="error_message"
+	/>
 	<div class="flex flex-row justify-end  gap-4 w-full">
 		<button class="button secondary" @click="close_modal()">Volver</button>
 
-		<button
+		<UButton
 			class="button primary"
 			@click="make_reservation()"
+			:loading="cancel_loading"
 		>
 			<Icon name="tabler:address-book" size="16"/>
 			Reservar
-		</button>
-
-		<span v-if="error_message" class="text-sm text-red-600 dark:text-red-200">{{ error_message }}</span>
+		</UButton>
 	</div>
 </template>
 
@@ -31,9 +38,11 @@ const {
 } = useSectorComposable()
 
 const error_message: Ref<undefined | string> = ref()
+const cancel_loading: Ref<boolean> = ref(false)
 
 const make_reservation = async () => {
-	if ( selected_detail.value && !selected_detail.value.detail.id) return;
+	cancel_loading.value = true
+	if (selected_detail.value && !selected_detail.value.detail.id) return;
 	await $auth_fetch('/api/reservation', {
 		method: 'POST',
 		body: {
@@ -41,12 +50,14 @@ const make_reservation = async () => {
 		}
 	}).then((data) => {
 		close_modal()
-		useToast().add({ title: 'Reserva realizada con éxito' })
+		useToast().add({title: 'Reserva realizada con éxito'})
 		change_status(DetailStatusEnum.reservado)
-		get_detail( selected_detail.value!.detail.id )
+		get_detail(selected_detail.value!.detail.id)
 	}).catch((error) => {
 		console.error(error.data)
 		error_message.value = error.data.message
+	}).finally(() => {
+		cancel_loading.value = false
 	})
 
 }

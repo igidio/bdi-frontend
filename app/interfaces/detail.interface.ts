@@ -11,5 +11,5 @@ export interface DetailInterface {
 	value:      number;
 	created_at: Date;
 	updated_at: Date;
-	head:       HeadInterface;
+	head?:       HeadInterface;
 }

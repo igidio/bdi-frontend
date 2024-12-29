@@ -3,7 +3,7 @@
 
 		<div class="w-full flex flex-col overflow-hidden gap-2">
 			<DetailMap class="block tablet:hidden"/>
-			<AppCard class="">
+			<AppCard>
 				<div class="my-2">
 					<select v-model="current_head" @change="get_details()" class="select gray">
 						<option selected disabled :value="undefined">Selecciona un sector</option>
@@ -15,7 +15,10 @@
 				</div>
 
 				<div class="overflow-scroll tablet:h-[calc(100vh-215px)]">
-				<DetailGrid v-if="current_head"/>
+					<div class="h-full w-full content-center text-center" v-if="loading_head">
+						<UIcon name="tabler:circle-dashed" class="h-8 w-8 bg-black/40 animate-spin dark:bg-white/40"/>
+					</div>
+					<DetailGrid v-if="current_head && !loading_head"/>
 				</div>
 
 			</AppCard>
@@ -49,6 +52,7 @@ const {
 	current_head,
 	selected_detail,
 	current_details,
+	loading_head,
 	get_details
 } = useSectorComposable()
 

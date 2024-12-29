@@ -39,6 +39,11 @@ export default defineNuxtConfig({
 			path: '~/components/User',
 			pathPrefix: true,
 		},
+		{
+			prefix: 'Reservation',
+			path: '~/components/Reservation',
+			pathPrefix: true,
+		},
 	],
 
 	future: {

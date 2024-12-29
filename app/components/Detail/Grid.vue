@@ -2,8 +2,8 @@
 
 			<table class="w-full text-black gap-2">
 				<thead class="text-xs">
-				<tr class="sticky top-0 bg-white z-[2]">
-					<th class="sticky top-0 left-0 z-50 bg-white">
+				<tr class="sticky top-0 surface z-[2]">
+					<th class="sticky top-0 left-0 z-50 surface">
 					</th>
 					<th v-for="(_, index) in matrix[0]" :key="index">
 						<DetailHeaderItem :value="index + 1"></DetailHeaderItem>
@@ -13,7 +13,7 @@
 
 				<tbody>
 				<tr v-for="(row, index_row) in matrix" :key="index_row">
-					<td class="sticky left-0 bg-white z-[1]">
+					<td class="sticky left-0 surface z-[1]">
 						<DetailHeaderItem :value="rows[index_row]"></DetailHeaderItem>
 					</td>
 					<td v-for="(col) in row" :key="col?.id" v-if="row.length > 0">

@@ -1,9 +1,15 @@
 <template>
 	<component :is="is_card ? Card : 'div'" :title="`Sector ${current_head?.sector}`" class="h-fit">
 		<span v-if="is_card">{{ current_head?.name }}</span>
-		<span class="text-sm font-bold">Disposición de espacios</span>
-		
-		<table>
+
+		<USkeleton class="h-4 my-2" v-if="loading_head" />
+		<span class="text-sm font-bold" v-else>Disposición de espacios</span>
+
+		<div class="flex flex-col gap-2" v-if="loading_head">
+			<USkeleton class="h-2" v-for="_ in 4" />
+		</div>
+
+		<table v-else>
 			<tr v-for="e in disposition" class="text-sm">
 				<td class="flex items-center">
 					<Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>
@@ -12,11 +18,15 @@
 				<td>{{ e.value }}</td>
 			</tr>
 		</table>
+
+		<USkeleton class="h-4 my-2" v-if="loading_head" />
+		<span class="font-bold text-sm" v-else>Disponibilidad</span>
+
+		<div class="flex flex-col gap-2" v-if="loading_head">
+			<USkeleton class="h-2" v-for="_ in 4" />
+		</div>
 		
-		
-		<span class="font-bold text-sm">Disponibilidad</span>
-		
-		<table>
+		<table v-else>
 			<tr v-for="e in availability" class="text-sm">
 				<td class="flex items-center">
 					<Icon name="tabler:square-filled" :class="e.color" class="mr-1" v-if="e.color"/>
@@ -41,7 +51,7 @@ withDefaults(defineProps<Props>(), {
 import {DetailStatusEnum, DetailTypeEnum} from "~/enums";
 import Card from "~/components/App/Card.vue";
 
-const {current_details, current_head} = useSectorComposable()
+const {current_details, current_head, loading_head} = useSectorComposable()
 
 // TODO	Capilla
 const disposition = computed(() => [

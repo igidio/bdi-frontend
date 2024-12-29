@@ -10,9 +10,9 @@ export const sidebar_options = [
 		to: "details"
 	},
 	{
-		name: "Opción 1",
-		icon: "tabler:circle-number-1",
-		to: ""
+		name: "Reservas",
+		icon: "tabler:address-book",
+		to: "reservations"
 	},
 	{
 		name: "Opción 2",

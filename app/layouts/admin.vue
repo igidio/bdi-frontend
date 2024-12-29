@@ -1,5 +1,5 @@
 <template>
-	<AppModal/>
+	<AppGlobalModal/>
 	<div class="flex flex-row">
 		<div class="w-fit">
 			<AppSidebarMobile/>

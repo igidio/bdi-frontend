@@ -37,7 +37,7 @@ html, #__nuxt {
 }
 
 * {
-  @apply scrollbar scrollbar-w-[3px] scrollbar-h-[3px] scrollbar-thumb-slate-700/20 scrollbar-thumb-rounded-lg;
+  @apply scrollbar scrollbar-w-[3px] scrollbar-h-[3px] scrollbar-thumb-rounded-lg scrollbar-thumb-slate-700/20 dark:scrollbar-thumb-slate-200/80;
 }
 
 /* COLORS */
@@ -54,7 +54,7 @@ html, #__nuxt {
 }
 
 .surface {
-  @apply dark:bg-[var(--surface-default)];
+  @apply #{$surface};
 }
 
 /* BUTTONS */

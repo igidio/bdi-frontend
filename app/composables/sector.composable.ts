@@ -9,6 +9,8 @@ const current_details: Ref<DetailInterface[] | undefined> = ref(undefined)
 const selected_detail: Ref<SelectedDetailInterface | undefined> = ref(undefined)
 const heads: Ref<HeadInterface[]> = ref([])
 
+const loading_detail = ref(false)
+const loading_head = ref(false)
 
 interface SelectedDetailInterface {
 	detail: DetailInterface;
@@ -25,10 +27,12 @@ export function useSectorComposable() {
 	}
 
 	const get_details = async () => {
+		loading_head.value = true
 		if (current_head.value === undefined) return
 		const data = await $fetch(`api/detail/sector/${current_head.value?.id}`)
 		current_details.value = data as any
 		selected_detail.value = undefined
+		loading_head.value = false
 	}
 
 	const set_selected_detail = async (detail: SelectedDetailInterface) => {
@@ -40,10 +44,12 @@ export function useSectorComposable() {
 	}
 
 	const get_detail = async (id: number) => {
+		loading_detail.value = true
 		await $auth_fetch<SelectedDetailInterface>(`/api/detail/select/${id}`).then((data: SelectedDetailInterface) => {
 			set_selected_detail(data)
 		})
 		await useRouter().push({hash: '#info'})
+		loading_detail.value = false
 	}
 
 	const change_status = (
@@ -59,11 +65,13 @@ export function useSectorComposable() {
 
 	return {
 		heads, current_head, set_head, current_details,
+		loading_detail,
 		get_details,
 		set_selected_detail,
 		delete_selected_detail,
 		get_detail,
 		change_status,
-		selected_detail
+		selected_detail,
+		loading_head
 	};
 }
