@@ -3,11 +3,20 @@
 		<p>Al cancelar la reserva (más detalles de lo que va a pasar):</p>
 		<span v-if="error_message" class="text-sm text-red-600 dark:text-red-200">{{ error_message }}</span>
 		<div class="flex flex-row justify-end gap-4 w-full">
-			<button class="button secondary" @click="close_modal()">Volver</button>
-			<button class="button primary" @click="cancel_reservation()">
-				<Icon name="tabler:address-book" size="16"/>
+			<UButton
+				@click="close_modal()"
+				color="primary"
+				variant="soft"
+				class="px-6"
+			>Volver</UButton>
+			<UButton
+				@click="cancel_reservation()"
+				icon="tabler:address-book"
+				color="black"
+				:loading="loading"
+			>
 				Cancelar reserva
-			</button>
+			</UButton>
 		</div>
 	</div>
 	<div v-else>
@@ -18,7 +27,7 @@
 <script setup lang="ts">
 import {DetailStatusEnum} from "~/enums";
 
-const loading = ref(false);
+const loading = ref(false)
 const {$auth_fetch} = useNuxtApp()
 const {close_modal} = useUiStore();
 const {
@@ -27,10 +36,11 @@ const {
 	get_detail,
 	change_status
 } = useSectorComposable()
-const error_message: Ref<undefined | string> = ref()
+const error_message: Ref<undefined | string> = ref(undefined)
 
 const cancel_reservation = async () => {
 	loading.value = true
+	error_message.value = undefined
 	if (selected_detail.value && !selected_detail.value.detail.id) return;
 	await $auth_fetch(`/api/reservation/deactivate/${selected_detail.value?.detail.id}`, {
 		method: 'PATCH'

@@ -10,14 +10,19 @@
 		:description="error_message"
 	/>
 	<div class="flex flex-row justify-end  gap-4 w-full">
-		<button class="button secondary" @click="close_modal()">Volver</button>
+		<UButton
+			@click="close_modal()"
+			color="primary"
+			variant="soft"
+			class="px-6"
+		>Volver</UButton>
 
 		<UButton
 			class="button primary"
 			@click="make_reservation()"
 			:loading="cancel_loading"
+			icon="tabler:address-book"
 		>
-			<Icon name="tabler:address-book" size="16"/>
 			Reservar
 		</UButton>
 	</div>

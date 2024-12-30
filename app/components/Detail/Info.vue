@@ -1,51 +1,72 @@
 <template>
-	<AppCard>
+	<UCard>
+		<template #header>
+			<div class="flex flex-row">
+				<UButton
+					block
+					color="primary"
+					variant="soft"
+					@click="delete_selected_detail()"
+				>Cerrar
+				</UButton>
+			</div>
+		</template>
 
-		<div class="flex flex-row">
-			<button class="button secondary block" @click="delete_selected_detail()">Cerrar</button>
+		<div v-if="loading_detail">
+			<USkeleton class="h-6 w-full mb-2" v-if="loading_detail"/>
+			<div class="flex flex-col gap-4">
+				<USkeleton class="h-6" v-for="i in 4"/>
+			</div>
 		</div>
 
-		<USkeleton class="h-8 w-full" v-if="loading_detail"/>
+		<div v-else>
 		<span
-			class="text-xl font-semibold"
-			v-else
+			class="text-[16px] font-bold mb-2"
 		>Espacio {{ selected_detail?.detail.value }}
 		</span>
 
-		<div class="flex flex-col gap-2" v-if="loading_detail">
-			<USkeleton class="h-6" v-for="i in 3"/>
-		</div>
-		<div class="text-sm" v-else>
-			<div class="flex flex-col mb-2" v-for="element in elements">
-				<span class="font-semibold">{{ element.name }}</span>
-				<span>{{ element.value }}</span>
+			<div class="text-sm flex flex-col gap-2">
+				<div class="flex flex-col" v-for="element in elements">
+					<span class="font-semibold">{{ element.name }}</span>
+					<span>{{ element.value }}</span>
+				</div>
 			</div>
 		</div>
+
 
 		<div v-if="user_role === UserRoleEnum.client">
 			<div
 				v-if="!show_sale_info && selected_detail?.reservation_info?.is_available && selected_detail.detail.status === DetailStatusEnum.disponible"
 			>
-				<button class="button primary block" @click="useUiStore().modal_generate({
-					title: 'Reservar espacio ' + selected_detail?.detail.value,
-					component: ModalDetail,
-				})"
-				:disabled="loading_detail"
+				<UButton
+					color="primary"
+					block
+					@click="useUiStore().modal_generate({
+						title: 'Reservar espacio ' + selected_detail?.detail.value,
+						component: ModalDetail,
+					})"
+					:disabled="loading_detail"
 				>Reservar
-				</button>
+				</UButton>
 			</div>
 
 			<div
 				v-if="user_role === UserRoleEnum.client && selected_detail?.reservation_info && !selected_detail.reservation_info.is_available">
-				<button class="button black" @click="useUiStore().modal_generate({
-				title: 'Cancelar reserva',
-				component: ModalCancelReservation,
-			})">
+				<UButton
+					color="black"
+					block
+					@click="useUiStore().modal_generate({
+						title: 'Cancelar reserva',
+						component: ModalCancelReservation,
+					})"
+					:disabled="loading_detail"
+				>
 					Cancelar reserva
-				</button>
+				</UButton>
 			</div>
+
 		</div>
-	</AppCard>
+	</UCard>
 
 </template>
 
@@ -57,6 +78,8 @@ import {AppCard} from "#components";
 
 import ModalDetail from "~/components/Detail/ModalDetail.vue";
 import ModalCancelReservation from "~/components/Detail/ModalCancelReservation.vue";
+import User from "~/pages/user.vue";
+import {load} from "yaml-ast-parser";
 
 const sectorComposable = useSectorComposable()
 const {
@@ -71,34 +94,47 @@ const show_sale_info = computed(() => {
 	return ([UserRoleEnum.admin, UserRoleEnum.superuser].includes(user?.role as UserRoleEnum))
 })
 
-const elements: ComputedRef<{ name: string, value: string }[]> = computed(() => [
-	(selected_detail) && ({
-		name: 'Coordenada',
-		value: `${selected_detail.value.detail.row} - ${selected_detail?.value.detail.column}`,
-	}),
-	{
-		name: 'Sector',
-		value: selected_detail.value.detail.head.sector,
-	},
-	{
-		name: 'Disposición',
-		value: selected_detail.value.detail.type,
-	},
-	{
-		name: 'Disponibilidad',
-		value: selected_detail.value.detail.status,
-	},
-	(show_sale_info.value) && ({
-		name: 'Cliente',
-		value: 'Nombre Apellido',
-	}),
-	(show_sale_info.value) && ({
-		name: 'Contrato',
-		value: '000000000',
-	}),
-	(show_sale_info.value) && ({
-		name: 'Fecha del contrato',
-		value: new Date().toLocaleDateString(),
-	}),
-])
+interface elements_interface {
+	name: string,
+	value: string
+}
+
+const elements: ComputedRef<elements_interface[]> = computed(() => {
+	if (selected_detail.value === undefined) return [];
+
+	let info_items: elements_interface[] = [
+		{
+			name: 'Coordenada',
+			value: `${selected_detail.value.detail.row} - ${selected_detail?.value.detail.column}`,
+		},
+		{
+			name: 'Sector',
+			value: selected_detail.value.detail.head?.sector!,
+		},
+		{
+			name: 'Disposición',
+			value: selected_detail.value.detail.type,
+		},
+		{
+			name: 'Disponibilidad',
+			value: selected_detail.value.detail.status,
+		}
+	]
+
+	if (show_sale_info.value) info_items.push(...[
+		{
+			name: 'Cliente',
+			value: 'Nombre Apellido',
+		},
+		{
+			name: 'Contrato',
+			value: '000000000',
+		},
+		{
+			name: 'Fecha del contrato',
+			value: new Date().toLocaleDateString(),
+		}
+	])
+	return info_items
+})
 </script>

@@ -3,7 +3,7 @@
 
 		<div class="w-full flex flex-col overflow-hidden gap-2">
 			<DetailMap class="block tablet:hidden"/>
-			<AppCard>
+			<UCard>
 				<div class="my-2">
 					<select v-model="current_head" @change="get_details()" class="select gray">
 						<option selected disabled :value="undefined">Selecciona un sector</option>
@@ -21,7 +21,7 @@
 					<DetailGrid v-if="current_head && !loading_head"/>
 				</div>
 
-			</AppCard>
+			</UCard>
 		</div>
 
 		<div class="w-full tablet:w-48 gap-2 flex flex-col overflow-y-scroll menu-fade">

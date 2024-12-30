@@ -1,6 +1,9 @@
 <template>
-	<component :is="is_card ? Card : 'div'" :title="`Sector ${current_head?.sector}`" class="h-fit">
-		<span v-if="is_card">{{ current_head?.name }}</span>
+	<component :is="is_card ? UCard : 'div'" class="h-fit">
+		<div class="flex flex-col gap-2" v-if="is_card">
+			<span class="font-bold text-xl">{{ `Sector ${current_head?.sector}` }}</span>
+			<span>{{ current_head?.name }}</span>
+		</div>
 
 		<USkeleton class="h-4 my-2" v-if="loading_head" />
 		<span class="text-sm font-bold" v-else>Disposición de espacios</span>
@@ -41,6 +44,8 @@
 </template>
 
 <script setup lang="ts">
+import {UCard} from "#components";
+
 interface Props {
 	is_card?: boolean
 }

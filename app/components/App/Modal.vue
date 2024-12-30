@@ -7,7 +7,6 @@
 			<slot/>
 			<template #footer>
 				<slot name="footer"/>
-
 			</template>
 		</UCard>
 	</UModal>

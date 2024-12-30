@@ -1,4 +1,4 @@
-import type {DetailInterface} from "~/interfaces";
+import type {DetailInterface, UserInterface} from "~/interfaces";
 
 export interface ReservationInterface {
 	id:         number;
@@ -6,4 +6,5 @@ export interface ReservationInterface {
 	created_at: Date;
 	updated_at: Date;
 	detail?:     DetailInterface;
+	user?: UserInterface;
 }

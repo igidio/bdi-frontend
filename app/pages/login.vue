@@ -1,28 +1,28 @@
 <template>
-	
-	<AppCard>
+
+	<UCard>
 		<div class="text-center flex flex-col">
 			<span class="text-xl font-semibold">Bienvenido</span>
 			<span class="text-sm">¿No tienes una cuenta?, puedes <NuxtLink class="hyper"
 			                                                               to="signup">Registrarte</NuxtLink></span>
 		</div>
-		
+
 		<form @submit.prevent="submit">
-			
+
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-col gap-2">
 					<label for="input-label" class="block font-medium dark:text-white">Nombre de usuario o correo
 						electrónico</label>
 					<input type="text" class="input gray" v-model="form.username_or_email" autocomplete="username">
 				</div>
-				
-				
+
+
 				<div class="flex flex-col gap-2">
 					<label for="input-label" class="block font-medium dark:text-white">Contraseña</label>
 					<input type="password" class="input gray" v-model="form.password" autocomplete="current-password">
 					<NuxtLink class="hyper text-sm" to="forgot">¿Olvidaste la contraseña?.</NuxtLink>
 				</div>
-				
+
 				<div class="inline-flex">
 					<input
 						type="checkbox"
@@ -33,11 +33,18 @@
 					>
 					<label for="hs-checked-checkbox" class="text-gray-500 ms-3 dark:text-neutral-400">Recuérdame</label>
 				</div>
-				<span v-if="error_message" class="text-red-500 font-semibold">{{ error_message }}</span>
-				<button class="button primary block" type="submit">Iniciar sesión</button>
+				<UAlert
+					v-if="error_message"
+					icon="tabler:alert-hexagon"
+					color="red"
+					variant="subtle"
+					title=""
+					:description="error_message"
+				/>
+				<UButton block type="submit" :loading="loading">Iniciar sesión</UButton>
 			</div>
 		</form>
-	</AppCard>
+	</UCard>
 </template>
 
 <script setup lang="ts">
@@ -49,7 +56,8 @@ definePageMeta({
 });
 import {z} from "zod";
 import {useUserStore} from "~/stores/user.store";
-import User from "~/pages/user.vue";
+
+const loading = ref(false)
 
 const form = ref({
 	username_or_email: "",
@@ -78,6 +86,8 @@ const submit = async () => {
 };
 
 const get_user = async () => {
+	loading.value = true
+	error_message.value = undefined
 	await $fetch<UserInterface>('/api/auth/login', {
 		method: 'POST',
 		body: {
@@ -87,7 +97,6 @@ const get_user = async () => {
 		}
 	})
 		.then((data) => {
-			error_message.value = undefined
 			log_user({
 				id: data.id,
 				username: data.username,
@@ -101,6 +110,8 @@ const get_user = async () => {
 		})
 		.catch((e) => {
 			error_message.value = e.data.message
+		}).finally(() => {
+			loading.value = false
 		})
 }
 </script>

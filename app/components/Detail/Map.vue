@@ -1,6 +1,8 @@
 <template>
-	<component :is="is_card ? Card : 'div'" title="Mapa">
-		
+	<component :is="is_card ? UCard : 'div'">
+		<template #header>
+			Mapa
+		</template>
 		
 		<div class="w-full">
 			<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.54 343.76">
@@ -87,6 +89,8 @@
 </template>
 
 <script setup lang="ts">
+import {UCard} from "#components";
+
 interface Props {
 	is_card?: boolean,
 }

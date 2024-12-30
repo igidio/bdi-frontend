@@ -9,9 +9,8 @@
 			<slot/>
 		</div>
 
-		<!--		<template #footer>-->
-		<!--			<Placeholder class="h-8" />-->
-		<!--		</template>-->
+		<template #footer>
+		</template>
 	</UCard>
 
 </template>
