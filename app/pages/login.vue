@@ -110,8 +110,8 @@ const get_user = async () => {
 		})
 		.catch((e) => {
 			error_message.value = e.data.message
-		}).finally(() => {
 			loading.value = false
-		})
+		})/*.finally(() => {
+		})*/
 }
 </script>

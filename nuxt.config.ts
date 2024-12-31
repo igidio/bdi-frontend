@@ -4,12 +4,11 @@ export default defineNuxtConfig({
 	devtools: {enabled: true},
 
 	devServer: {
-		port: 5173
+		port: +process.env.PORT!
 	},
 
 	modules: [
 		'@nuxt/ui',
-		//'@nuxtjs/tailwindcss',
 		'@nuxt/icon',
 		'@nuxtjs/color-mode',
 		'@pinia/nuxt',
@@ -51,7 +50,7 @@ export default defineNuxtConfig({
 	},
 	routeRules: {
 		'/api/**': {
-			proxy: {to: "http://localhost:3000/**",},
+			proxy: {to: `${process.env.SERVER}/**`,},
 		}
 	},
 	icon: {

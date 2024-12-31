@@ -21,5 +21,8 @@ logs
 
 # Local env files
 .env
-.env.*
+!.env.template
 !.env.example
+
+# Local Netlify folder
+.netlify
