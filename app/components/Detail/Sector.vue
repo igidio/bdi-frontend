@@ -59,7 +59,7 @@ import Card from "~/components/App/Card.vue";
 const {current_details, current_head, loading_head} = useSectorComposable()
 
 // TODO	Capilla
-const disposition = computed(() => [
+const disposition = computed(() => (current_details.value) ? [
 	{
 		name: 'Camino',
 		value: current_details.value!.filter((detail: any) => detail.type === DetailTypeEnum.camino).length,
@@ -80,10 +80,10 @@ const disposition = computed(() => [
 		value: current_details.value?.length,
 		color: 'bg-white'
 	},
-]);
+] : []);
 
 // TODO: Ocupados
-const availability = computed(() => [
+const availability = computed(() => (current_details.value ) ? [
 	{
 		name: 'Disponibles',
 		value: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.disponible).length,
@@ -104,5 +104,5 @@ const availability = computed(() => [
 		value: current_details.value!.filter((detail: any) => detail.status === DetailStatusEnum.no_disponible).length,
 		color: 'bg-fuchsia-200'
 	}
-]);
+] : []);
 </script>

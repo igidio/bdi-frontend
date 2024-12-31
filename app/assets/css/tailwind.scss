@@ -105,7 +105,6 @@ html, #__nuxt {
   &-desktop {
     @apply hidden desktop:flex sticky top-0;
   }
-
   &-mobile {
     @apply flex desktop:hidden;
   }

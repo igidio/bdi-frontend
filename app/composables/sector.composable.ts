@@ -29,9 +29,9 @@ export function useSectorComposable() {
 	const get_details = async () => {
 		loading_head.value = true
 		if (current_head.value === undefined) return
+		selected_detail.value = undefined
 		const data = await $fetch(`api/detail/sector/${current_head.value?.id}`)
 		current_details.value = data as any
-		selected_detail.value = undefined
 		loading_head.value = false
 	}
 

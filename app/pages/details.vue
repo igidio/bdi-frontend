@@ -32,9 +32,11 @@
 
 			<div id="info"></div>
 
-			<DetailInfo v-if="selected_detail && current_details"/>
+<!--			<DetailInfo v-if="selected_detail && current_details"/>-->
+			<DetailInfo v-if="(selected_detail || loading_detail) && current_details"/>
 
-			<div class="hidden tablet:block" v-else-if="current_details">
+<!--			<div class="hidden tablet:block" v-else-if="current_details">-->
+			<div class="hidden tablet:block" v-else-if="current_details || loading_head">
 				<DetailSector/>
 			</div>
 
@@ -53,6 +55,7 @@ const {
 	selected_detail,
 	current_details,
 	loading_head,
+	loading_detail,
 	get_details
 } = useSectorComposable()
 
