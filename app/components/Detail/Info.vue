@@ -74,12 +74,9 @@
 <script setup lang="ts">
 import {computed} from "vue";
 import {DetailStatusEnum, UserRoleEnum} from "~/enums";
-import {AppCard} from "#components";
 
 import ModalDetail from "~/components/Detail/ModalDetail.vue";
 import ModalCancelReservation from "~/components/Detail/ModalCancelReservation.vue";
-import User from "~/pages/user.vue";
-import {load} from "yaml-ast-parser";
 
 const sectorComposable = useSectorComposable()
 const {

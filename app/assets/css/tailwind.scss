@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* GENERAL */
 $background: 'bg-primary-50 dark:bg-shark-950';
@@ -20,12 +21,13 @@ $input-gray-default: 'bg-gray-100 dark:bg-gray-900';
     --primary-hover: theme(colors.waikawa[600]);
     --primary-active: theme(colors.waikawa[700]);
     --surface-default: theme(colors.waikawa[900]);
-  }
 }
+}
+
 
 /* GENERIC */
 body {
-  @apply text-base font-normal font-['Poppins'] #{$background} dark:bg-shark-950 dark:text-white;
+  @apply text-base font-normal font-['Poppins'] bg-primary-50 dark:bg-shark-950 dark:text-white;
 }
 
 .main {
@@ -150,7 +152,7 @@ html, #__nuxt {
 
 /* HEADER */
 .header {
-  @apply #{$background} py-4 w-full border-b-[1px] z-10 #{$border};
+  @apply bg-primary-50 dark:bg-shark-950 py-4 w-full border-b-[1px] z-10 border-gray-200 dark:border-shark-600;
 }
 
 /* BADGES */
