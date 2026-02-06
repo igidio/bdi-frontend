@@ -1,75 +1,94 @@
-# Nuxt Minimal Starter
+# bdi-frontend
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern web interface for the BDI Cemetery Management System. Built with Nuxt 3, this application provides a responsive and intuitive user experience for managing cemetery spaces, reservations, and user profiles.
 
-## Setup
+<p align="center">
+  <img src="https://i.imgur.com/8XUSKqV.jpeg" width="49%" />
+  <img src="https://i.imgur.com/DOCqtpi.jpeg" width="49%" />
+  <img src="https://i.imgur.com/h1eqNa2.jpeg" width="49%" />
+  <img src="https://i.imgur.com/WNnniEn.jpeg" width="49%" />
+</p>
 
-Make sure to install dependencies:
+## Features
 
-```bash
-# npm
-npm install
+- **User Authentication**: Secure login, registration, and password recovery flows.
+- **Space Exploration**: Interface to view and filter cemetery space details (Details/Inventory).
+- **Reservation Management**: Dedicated dashboard for users to track their active reservations.
+- **User Profile**: Account management settings.
+- **Responsive Design**: Mobile-first interface built with Tailwind CSS.
+- **State Management**: Centralized data handling using Pinia stores.
 
-# pnpm
-pnpm install
+## Technologies Used
 
-# yarn
-yarn install
+- **Framework**: [Nuxt 3](https://nuxt.com/) (Vue.js)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Library**: [Nuxt UI](https://ui.nuxt.com/)
+- **State Management**: [Pinia](https://pinia.vuejs.org/)
+- **Validation**: Zod
+- **Icons**: Nuxt Icon (Tabler Icons)
+  > _Note: Please check `package.json` for the full list of dependencies._
 
-# bun
-bun install
-```
+## Getting Started
 
-## Development Server
+Follow these instructions to set up the frontend application locally.
 
-Start the development server on `http://localhost:3000`:
+### Prerequisites
 
-```bash
-# npm
-npm run dev
+- Node.js (v18 or higher)
+- NPM (v9 or higher)
+- A running instance of the [BDI-Backend](https://github.com/igidio/bdi-backend) (for API connectivity)
 
-# pnpm
-pnpm dev
+### Installation
 
-# yarn
-yarn dev
+1. **Clone the repository**
 
-# bun
-bun run dev
-```
+   ```bash
+   git clone https://github.com/igidio/bdi-frontend.git
+   cd bdi-frontend
+   ```
 
-## Production
+2. **Install dependencies**
 
-Build the application for production:
+   ```bash
+   npm install
+   ```
 
-```bash
-# npm
-npm run build
+3. **Configure Environment Variables**
 
-# pnpm
-pnpm build
+   Create a **📄.env** file based on the template:
 
-# yarn
-yarn build
+   ```bash
+   cp .env.template .env
+   ```
 
-# bun
-bun run build
-```
+   Update the `SERVER` variable in **📄.env** to point to your backend URL (e.g., http://localhost:3000).
 
-Locally preview production build:
+4. **Run the Application**
 
-```bash
-# npm
-npm run preview
+   Start the development server:
 
-# pnpm
-pnpm preview
+   ```bash
+   npm run dev
+   ```
 
-# yarn
-yarn preview
+The application will be available at 🔗`http://localhost:5173` (or the port shown in your terminal).
 
-# bun
-bun run preview
-```
+## Project Structure
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- 📁 **app/**
+  - **📁 pages/**: Application routes and views (Login, Reservations, etc.).
+  - **📁 components/**: Reusable UI components organized by domain.
+  - **📁 stores/**: Pinia stores for state management (User, UI).
+  - **📁 interfaces/**: TypeScript definitions matching backend entities.
+  - **📁 layouts/**: Main layout templates.
+
+## Scripts
+
+- `npm run dev`: Start the development server.
+- `npm run build`: Build the application for production.
+- `npm run generate`: Pre-render the application for static hosting.
+- `npm run preview`: Preview the production build locally.
+
+## Licence
+
+This project is licensed under the MIT License - see the **📄LICENSE.md** file for details.
