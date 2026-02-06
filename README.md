@@ -71,7 +71,7 @@ Follow these instructions to set up the frontend application locally.
    npm run dev
    ```
 
-The application will be available at 🔗`http://localhost:5173` (or the port shown in your terminal).
+   The application will be available at 🔗`http://localhost:5173` (or the port shown in your terminal).
 
 ## Project Structure
 
@@ -91,4 +91,4 @@ The application will be available at 🔗`http://localhost:5173` (or the port sh
 
 ## Licence
 
-This project is licensed under the MIT License - see the [**📄LICENSE.md**](LICENSE) file for details.
+This project is licensed under the MIT License - see the [**📄LICENSE.md**](LICENSE.md) file for details.
