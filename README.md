@@ -89,6 +89,6 @@ Follow these instructions to set up the frontend application locally.
 - `npm run generate`: Pre-render the application for static hosting.
 - `npm run preview`: Preview the production build locally.
 
-## Licence
+## License
 
 This project is licensed under the MIT License - see the [**📄LICENSE.md**](LICENSE.md) file for details.
