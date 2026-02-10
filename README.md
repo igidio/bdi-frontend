@@ -89,6 +89,17 @@ Follow these instructions to set up the frontend application locally.
 - `npm run generate`: Pre-render the application for static hosting.
 - `npm run preview`: Preview the production build locally.
 
+## Test data
+
+To try the application you can use the following predefined user seed data that is created when running the seeders in the backend:
+
+| Role     | Username  | Email           | Password |
+| -------- | --------- | --------------- | -------- |
+| `ADMIN`  | username1 | email1@mail.com | password1 |
+| `CLIENT` | username2 | email2@mail.com | password1 |
+| `CLIENT` | username3 | email3@mail.com | password1 |
+
+
 ## License
 
 This project is licensed under the MIT License - see the [**📄LICENSE.md**](LICENSE.md) file for details.
